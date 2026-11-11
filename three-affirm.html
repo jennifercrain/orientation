@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFFIRM in Peer Coaching</title>
+<style>
+body { margin: 0; }
+#affirm-framework, #affirm-framework * { box-sizing: border-box; }
+#affirm-framework, #affirm-framework * { font-family: Arial, Helvetica, sans-serif; }
+#affirm-framework { color: #000; background: #fff; font-size: 16px; line-height: 1.55; }
+#affirm-framework :is(h1, h2, h3, p, ul) { margin: 0; }
+#affirm-framework :is(p, li, button) { font-size: 16px; }
+#affirm-framework :is(p, li) { color: #000; }
+#affirm-framework h1 { color: #fff; font-size: 36px; line-height: 1.1; }
+#affirm-framework h2 { margin-bottom: 1.5rem; color: #002855; font-size: 24px; line-height: 1.2; }
+#affirm-framework h3 { font-size: 20px; line-height: 1.25; }
+#affirm-framework button { cursor: pointer; }
+#affirm-framework button:focus-visible { outline: 2px solid #0070F0; outline-offset: 3px; }
+#affirm-framework .affirm-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #002855, #0070F0);
+  color: #fff;
+  text-align: center;
+}
+#affirm-framework .affirm-hero-pattern { position: absolute; inset: 0; opacity: .05; pointer-events: none; }
+#affirm-framework .affirm-hero-content { position: relative; padding: 5rem 1.5rem; }
+#affirm-framework .affirm-week {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 999px;
+  background: rgba(151,225,82,.2);
+  color: #97E152;
+}
+#affirm-framework .affirm-week::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: #97E152; }
+#affirm-framework .affirm-wave { display: block; width: 100%; margin-bottom: -1px; }
+#affirm-framework main { max-width: 48rem; margin-inline: auto; padding: 2rem 1.5rem 4rem; }
+#affirm-framework .affirm-intro p + p { margin-top: 1.5rem; }
+#affirm-framework .affirm-stages { margin-top: 2rem; }
+#affirm-framework .affirm-stages > p { margin-bottom: 1rem; font-style: italic; }
+#affirm-framework .affirm-stage-list { display: grid; gap: .75rem; }
+#affirm-framework .affirm-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  min-height: 5rem;
+  padding: 1rem;
+  border-left: 4px solid var(--stage-color);
+  border-radius: 6px;
+  background: #fff;
+}
+#affirm-framework .affirm-stage-content { flex: 1; min-width: 0; padding-top: .5rem; }
+#affirm-framework .affirm-stage-letter {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: clamp(3rem, 12vw, 5rem);
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 8px;
+  background: var(--stage-color);
+  color: var(--letter-color, #fff);
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+#affirm-framework .affirm-stage-letter:hover { transform: scale(1.05); }
+#affirm-framework .affirm-stage-title {
+  display: inline-block;
+  padding: 0;
+  margin: 0 0 .375rem;
+  border: 0;
+  background: transparent;
+  color: var(--title-color, var(--stage-color));
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+}
+#affirm-framework .affirm-stage-title:hover { text-decoration: underline; }
+#affirm-framework .affirm-dialog {
+  width: min(90%, 500px);
+  max-height: 80vh;
+  padding: 1.5rem;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  box-shadow: 0 10px 40px rgba(0,0,0,.2);
+}
+#affirm-framework .affirm-dialog::backdrop { background: rgba(0,0,0,.5); }
+#affirm-framework .affirm-dialog-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+#affirm-framework .affirm-close {
+  flex: 0 0 auto;
+  padding: .3rem .6rem;
+  border: 1px solid #0070F0;
+  border-radius: .35rem;
+  background: #fff;
+  color: #002855;
+  line-height: 1.3;
+}
+#affirm-framework .affirm-question-list { list-style: none; padding: 0; }
+#affirm-framework .affirm-question-list li {
+  margin-top: .625rem;
+  padding: .75rem;
+  border-left: 3px solid var(--stage-color);
+  border-radius: 4px;
+  background: #F5F7FA;
+}
+@media (min-width: 768px) {
+  #affirm-framework h1 { font-size: 48px; }
+  #affirm-framework h2 { font-size: 30px; }
+}
+@media (min-width: 1024px) { #affirm-framework h1 { font-size: 60px; } }
+@media (prefers-reduced-motion: reduce) {
+  #affirm-framework .affirm-stage-letter { transition: none; }
+}
+</style>
+</head>
+<body>
+<div id="affirm-framework">
+  <header class="affirm-hero">
+    <div class="affirm-hero-pattern" aria-hidden="true">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="affirm-hero-dots" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+            <circle cx="40" cy="40" r="1" fill="white" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#affirm-hero-dots)" />
+      </svg>
+    </div>
+    <div class="affirm-hero-content">
+      <div class="affirm-week">Week Three</div>
+      <h1>AFFIRM Framework</h1>
+    </div>
+    <svg class="affirm-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#fff" />
+    </svg>
+  </header>
+  <main>
+    <section class="affirm-intro" aria-labelledby="affirm-intro-heading">
+      <h2 id="affirm-intro-heading">What is AFFIRM?</h2>
+      <p>AFFIRM is WGU's very own coaching framework for academic success. A framework helps guide your coaching sessions by providing a clear structure and sequence. Instead of wondering what to do next, the framework gives you a roadmap that keeps both you and the student focused, intentional, and moving toward their learning goals. It helps ensure consistency in your approach and creates a supportive environment where students feel guided and understood.</p>
+      <p>The AFFIRM framework has six interconnected stages, each building on the last. Think of it as a fluid process—you may find yourself moving back and forth between stages as you clarify goals, re-explain strategies, or deepen understanding. The framework adapts to the student's needs.</p>
+    </section>
+    <section class="affirm-stages" aria-label="AFFIRM stages">
+      <p>Click a stage letter or title to see example powerful questions for that stage</p>
+      <div class="affirm-stage-list">
+        <div class="affirm-stage" style="--stage-color: #002855;">
+          <button class="affirm-stage-letter" type="button" data-affirm-stage="a" aria-haspopup="dialog" aria-label="Example questions for Achievement Orientation">A</button>
+          <div class="affirm-stage-content">
+            <button class="affirm-stage-title" type="button" data-affirm-stage="a" aria-haspopup="dialog">Achievement Orientation</button>
+            <p>Start by understanding what the student wants to accomplish. Help them articulate their goals and reflect on their current progress and learning experiences.</p>
+          </div>
+          <template>
+            <li>What is your goal for today (or this week)?</li>
+            <li>How do you feel about your progress in your courses right now?</li>
+            <li>What&#x27;s working well for you in your learning/studying?</li>
+            <li>What&#x27;s been your biggest struggle or challenge with your course(s) recently?</li>
+            <li>How do you typically approach challenges in your studies?</li>
+            <li>What&#x27;s holding you back from trying a new approach?</li>
+          </template>
+        </div>
+        <div class="affirm-stage" style="--stage-color: #0070F0;">
+          <button class="affirm-stage-letter" type="button" data-affirm-stage="f1" aria-haspopup="dialog" aria-label="Example questions for Frame">F</button>
+          <div class="affirm-stage-content">
+            <button class="affirm-stage-title" type="button" data-affirm-stage="f1" aria-haspopup="dialog">Frame</button>
+            <p>Help the student clearly articulate and understand their specific challenges. Work together to define the problem so you can move forward with targeted support.</p>
+          </div>
+          <template>
+            <li>What is your goal for today (or this week)?</li>
+            <li>How do you feel about your progress in your courses right now?</li>
+            <li>What&#x27;s working well for you in your learning/studying?</li>
+            <li>What&#x27;s been your biggest struggle or challenge with your course(s) recently?</li>
+            <li>How do you typically approach challenges in your studies?</li>
+            <li>What&#x27;s holding you back from trying a new approach?</li>
+          </template>
+        </div>
+        <div class="affirm-stage" style="--stage-color: #97E152; --letter-color: #002855; --title-color: #002855;">
+          <button class="affirm-stage-letter" type="button" data-affirm-stage="f2" aria-haspopup="dialog" aria-label="Example questions for Focus on the Strategy">F</button>
+          <div class="affirm-stage-content">
+            <button class="affirm-stage-title" type="button" data-affirm-stage="f2" aria-haspopup="dialog">Focus on the Strategy</button>
+            <p>Introduce and discuss targeted strategies or approaches. Demonstrate one strategy in action and explore alternatives together. Work collaboratively to build a game plan.</p>
+          </div>
+          <template>
+            <li>Here is a strategy for what we&#x27;re talking about. (Show/demonstrate) What is another option or approach?</li>
+            <li>After discussing no more than 2 strategies/tools/approaches, let&#x27;s work on one of these strategies together or build a game plan for your next steps.</li>
+            <li>Is there anything unclear about this strategy?</li>
+            <li>Tell me more about what you mean.</li>
+            <li>What is an example of that?</li>
+            <li>How can we put that in our own words?</li>
+          </template>
+        </div>
+        <div class="affirm-stage" style="--stage-color: #46B1EF; --letter-color: #002855; --title-color: #002855;">
+          <button class="affirm-stage-letter" type="button" data-affirm-stage="i" aria-haspopup="dialog" aria-label="Example questions for Intentional Practice">I</button>
+          <div class="affirm-stage-content">
+            <button class="affirm-stage-title" type="button" data-affirm-stage="i" aria-haspopup="dialog">Intentional Practice</button>
+            <p>Support the student as they actively apply the strategy. Provide constructive feedback and help them work through challenges in real time.</p>
+          </div>
+          <template>
+            <li>Let&#x27;s work on this strategy together or build a game plan for your next steps. (Demonstrate/Collaborate)</li>
+            <li>Tell me more about what you mean.</li>
+            <li>What is an example of that?</li>
+            <li>How can we put that in our own words? (related to notetaking)</li>
+            <li>How can we break this into more manageable chunks?</li>
+            <li>How would you explain this to your best friend?</li>
+          </template>
+        </div>
+        <div class="affirm-stage" style="--stage-color: #002855;">
+          <button class="affirm-stage-letter" type="button" data-affirm-stage="r" aria-haspopup="dialog" aria-label="Example questions for Reflect &amp; Review">R</button>
+          <div class="affirm-stage-content">
+            <button class="affirm-stage-title" type="button" data-affirm-stage="r" aria-haspopup="dialog">Reflect &amp; Review</button>
+            <p>Help the student synthesize their learning and identify actionable next steps. Explore how this strategy builds their confidence and independence.</p>
+          </div>
+          <template>
+            <li>How can this strategy or tool help you take more control over your learning experience?</li>
+            <li>What are your next steps with this strategy?</li>
+            <li>What are your goals for the next week?</li>
+            <li>What&#x27;s one small step you can take today to make progress toward your goals?</li>
+            <li>What habits or routines can you develop to support your success?</li>
+            <li>How will you track your progress toward your goals?</li>
+          </template>
+        </div>
+        <div class="affirm-stage" style="--stage-color: #0070F0;">
+          <button class="affirm-stage-letter" type="button" data-affirm-stage="m" aria-haspopup="dialog" aria-label="Example questions for Move Forward">M</button>
+          <div class="affirm-stage-content">
+            <button class="affirm-stage-title" type="button" data-affirm-stage="m" aria-haspopup="dialog">Move Forward</button>
+            <p>Encourage the student to identify their path ahead and celebrate their progress. Foster motivation and accountability for continued growth.</p>
+          </div>
+          <template>
+            <li>What obstacles do you anticipate, and how will you address them?</li>
+            <li>How will you celebrate your progress?</li>
+            <li>What are your goals for the next week?</li>
+            <li>What&#x27;s one small step you can take today to make progress toward your goals?</li>
+            <li>What habits or routines can you develop to support your success?</li>
+            <li>How will you track your progress toward your goals?</li>
+          </template>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dialog class="affirm-dialog" aria-labelledby="affirm-dialog-title">
+    <div class="affirm-dialog-heading">
+      <h3 id="affirm-dialog-title"></h3>
+      <button class="affirm-close" type="button" autofocus>Close</button>
+    </div>
+    <ul class="affirm-question-list"></ul>
+  </dialog>
+</div>
+<script>
+{
+  const page = document.getElementById('affirm-framework');
+  const dialog = page.querySelector('.affirm-dialog');
+  const title = dialog.querySelector('h3');
+  const questions = dialog.querySelector('.affirm-question-list');
+  let activeTrigger;
+
+  for (const button of page.querySelectorAll('button[data-affirm-stage]')) {
+    button.addEventListener('click', () => {
+      const stage = button.closest('.affirm-stage');
+      const template = stage.querySelector('template');
+      title.textContent = stage.querySelector('.affirm-stage-title').textContent;
+      title.style.color = stage.style.getPropertyValue('--title-color') || stage.style.getPropertyValue('--stage-color');
+      questions.style.setProperty('--stage-color', stage.style.getPropertyValue('--stage-color'));
+      questions.replaceChildren(template.content.cloneNode(true));
+      activeTrigger = button;
+      dialog.showModal();
+    });
+  }
+  dialog.querySelector('.affirm-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right ||
+        event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+  });
+  dialog.addEventListener('close', () => activeTrigger?.focus());
+}
+</script>
+</body>
+</html>
