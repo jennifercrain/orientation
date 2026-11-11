@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Policy</title>
+<style>
+  #ai-policy, #ai-policy * { box-sizing: border-box; }
+  #ai-policy, #ai-policy * { font-family: Arial, "Liberation Sans", sans-serif !important; }
+  #ai-policy {
+    --navy: #002855;
+    --blue: #0070F0;
+    --green: #97e152;
+    color: #000;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  #ai-policy :where(h1, h2, h3, p, ul) { margin: 0; }
+  #ai-policy h1 { color: #fff; font-size: 36px; line-height: 1.1; font-weight: 700; }
+  #ai-policy h2 { color: var(--navy); font-size: 24px; line-height: 1.2; font-weight: 700; }
+  #ai-policy h3 { color: var(--navy); font-size: 20px; line-height: 1.25; font-weight: 700; }
+  #ai-policy p, #ai-policy li { font-size: 16px; line-height: 1.55; color: #000; }
+  #ai-policy strong { color: var(--blue); font-weight: 700; }
+  #ai-policy p + p { margin-top: 1rem; }
+  #ai-policy .policy-hero {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--navy);
+    background-image: radial-gradient(circle, rgba(255,255,255,.13) 1px, transparent 1px),
+      linear-gradient(135deg, var(--navy), var(--blue));
+    background-size: 60px 60px, auto;
+    color: #fff;
+    text-align: center;
+  }
+  #ai-policy .policy-hero-inner { padding: 5rem 1.5rem 3.5rem; }
+  #ai-policy .policy-week {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 999px;
+    padding: .45rem 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--green);
+    background: rgba(151,225,82,.2);
+    font-size: 16px;
+  }
+  #ai-policy .policy-week::before {
+    content: "";
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background: var(--green);
+  }
+  #ai-policy .policy-wave { display: block; width: 100%; height: 52px; margin-bottom: -1px; }
+  #ai-policy .policy-main { max-width: 1152px; margin-inline: auto; padding: 0 1.5rem 4rem; }
+  #ai-policy .policy-section { padding-top: 3rem; }
+  #ai-policy .policy-heading { text-align: center; margin-bottom: 1.5rem; }
+  #ai-policy .policy-heading::after {
+    content: "";
+    display: block;
+    width: 5rem;
+    height: 3px;
+    margin: .9rem auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--navy), var(--blue), var(--green));
+  }
+  #ai-policy .policy-copy { max-width: 50rem; margin-inline: auto; }
+  #ai-policy .policy-copy ul { padding-left: 1.4rem; margin: .55rem 0 1rem; list-style: disc; }
+  #ai-policy .policy-callout {
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--blue);
+    border-radius: .5rem;
+    background: #eff6ff;
+  }
+  #ai-policy .policy-callout h3 { margin-bottom: .4rem; }
+  #ai-policy .policy-grid { display: grid; gap: 1.25rem; margin-top: 1.25rem; }
+  #ai-policy .policy-card {
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid var(--blue);
+    border-radius: .85rem;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,40,85,.09);
+  }
+  #ai-policy .policy-card.is-allowed { border-left-color: var(--green); }
+  #ai-policy .policy-card h3 { margin-bottom: .75rem; }
+  #ai-policy .policy-card p, #ai-policy .policy-card li { font-size: 14px; }
+  #ai-policy .policy-marked { padding: 0; list-style: none; }
+  #ai-policy .policy-marked li {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    gap: .5rem;
+    align-items: baseline;
+  }
+  #ai-policy .policy-marked li + li { margin-top: .65rem; }
+  #ai-policy .policy-mark { color: var(--navy); font-weight: 700; }
+  #ai-policy .is-allowed .policy-mark { color: #38651a; }
+  #ai-policy .policy-after-cards { margin-top: 1.25rem; }
+  #ai-policy .policy-summary { color: var(--navy); }
+  @media (min-width: 768px) {
+    #ai-policy h1 { font-size: 48px; }
+    #ai-policy h2 { font-size: 30px; }
+    #ai-policy .policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    #ai-policy h1 { font-size: 60px; }
+  }
+  body { margin: 0; }
+</style>
+</head>
+<body>
+<div id="ai-policy">
+  <header class="policy-hero">
+    <div class="policy-hero-inner">
+      <span class="policy-week">Week One</span>
+      <h1>AI Policy</h1>
+    </div>
+    <svg class="policy-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#fff"/>
+    </svg>
+  </header>
+  <main class="policy-main">
+    <section class="policy-section" aria-labelledby="department-policy">
+      <h2 class="policy-heading" id="department-policy">Department Policy</h2>
+      <div class="policy-copy">
+        <p><strong>In our day-to-day work, we do not discuss, recommend, demonstrate, or engage with AI tools with students.</strong> This is not a gray area, and it is not a judgment call or “case-by-case” basis. Students in need of AI support can be referred to AI Specialists.</p>
+        <p>Peer support exists to foster authentic student-to-student connection and skill development through human interaction. Introducing AI into coaching conversations undermines our goal by shifting learning away from the student's own thinking and problem-solving process and removing peer-to-peer connection. Simply put, AI is incompatible with our mission.</p>
+        <p>The role of the peer intern is to:</p>
+        <ul>
+          <li>Support how students learn</li>
+          <li>Strengthen their skills and confidence</li>
+          <li>Preserve the integrity of their learning experience</li>
+        </ul>
+        <p>AI, by its nature, replaces or shortcuts those processes. Because of that, AI use with students is antithetical to the purpose of peer support. This boundary protects students, academic integrity, and the credibility and continued existence of the Peer Navigator role.</p>
+        <aside class="policy-callout" aria-labelledby="policy-updates">
+          <h3 id="policy-updates">Important</h3>
+          <p>As AI continues to evolve, you may periodically receive AI-related communications or updates from the university. These updates do not override our department's policy. Your leaders will keep you informed of any changes.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="policy-section" aria-labelledby="why-this-boundary">
+      <h2 class="policy-heading" id="why-this-boundary">Why This Boundary Exists</h2>
+      <div class="policy-copy">
+        <p>Our policy directly aligns with WGU's academic integrity, privacy, and AI standards. As of August 2026, WGU policies make four expectations clear:</p>
+        <ul>
+          <li>Course materials and assessments are confidential.</li>
+          <li>Student information must be protected.</li>
+          <li>AI is a tool, but it must be used responsibly to protect academic integrity.</li>
+          <li>AI must never replace a student's own thinking.</li>
+        </ul>
+        <p>Failure to uphold WGU's standards may result in corrective action or sanctions in accordance with university policy and employment expectations.</p>
+      </div>
+    </section>
+
+    <section class="policy-section" aria-labelledby="protected-information">
+      <h2 class="policy-heading" id="protected-information">What Must Never Be Entered into AI Tools</h2>
+      <p class="policy-copy">The following must not be copied, pasted, uploaded, or summarized in any public or unapproved AI system.</p>
+      <div class="policy-grid">
+        <div class="policy-card">
+          <h3>WGU Course Materials</h3>
+          <ul class="policy-marked" role="list">
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Task and assessment prompts</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Rubrics</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Templates</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Quizzes and pre-assessments</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Course videos or transcripts</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Course pages or instructional resources</span></li>
+          </ul>
+        </div>
+        <div class="policy-card">
+          <h3>Student Information</h3>
+          <ul class="policy-marked" role="list">
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Names</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Email addresses</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Student ID numbers</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Phone numbers</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span>Screenshots or recordings that show identifying information</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="policy-callout policy-copy">
+        <p><strong>A simple rule to remember:</strong> If it came from WGU or identifies a student, it does not go into AI — period.</p>
+      </div>
+    </section>
+
+    <section class="policy-section" aria-labelledby="ai-outside-sessions">
+      <h2 class="policy-heading" id="ai-outside-sessions">AI Outside of Coaching Sessions</h2>
+      <p class="policy-copy">While AI is not used with students, limited internal use is permitted for professional development exercises and administrative support (not completion).</p>
+      <div class="policy-grid">
+        <div class="policy-card is-allowed">
+          <h3>AI May Be Used to:</h3>
+          <ul class="policy-marked" role="list">
+            <li><span class="policy-mark" aria-hidden="true">✓</span><span><strong>Generate ideas or prompts:</strong> Find yourself struggling to ask good questions during a certain stage of AFFIRM? AI can help you come up with ideas that you can apply to your sessions later.</span></li>
+            <li><span class="policy-mark" aria-hidden="true">✓</span><span><strong>Practice coaching skills:</strong> Did you have an appointment or live event that didn't go well? Without putting in sensitive or protected information, have AI be your student and practice how you might have approached the call differently.</span></li>
+            <li><span class="policy-mark" aria-hidden="true">✓</span><span><strong>Check spelling and grammar:</strong> Have AI polish your thoughts in student-facing materials for better engagement.</span></li>
+          </ul>
+        </div>
+        <div class="policy-card">
+          <h3>AI May Not Be Used to:</h3>
+          <ul class="policy-marked" role="list">
+            <li><span class="policy-mark" aria-hidden="true">×</span><span><strong>Generate WGU Connect Community posts:</strong> Community posts should be thoughtfully written by you and focused on genuine engagement.</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span><strong>Generate or reply to student emails:</strong> Student emails must sound human, genuine, and personalized.</span></li>
+            <li><span class="policy-mark" aria-hidden="true">×</span><span><strong>Complete Session Documentation:</strong> Student notes and Discussion Maps must be written directly by you.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="policy-copy policy-after-cards">
+        <p>Peer support is built on peer interaction, lived experience, and intentional communication.</p>
+        <p class="policy-summary"><strong>AI may support your growth in coaching, but it must never replace you in the coaching relationship.</strong></p>
+      </div>
+    </section>
+
+    <section class="policy-section" aria-labelledby="policy-in-practice">
+      <h2 class="policy-heading" id="policy-in-practice">What This Means in Practice</h2>
+      <div class="policy-copy">
+        <p>In coaching sessions and in internal work, interns do not:</p>
+        <div class="policy-callout">
+          <ul class="policy-marked" role="list" style="padding: 0; margin: 0;">
+            <li><span class="policy-mark" aria-hidden="true">✗</span><span>Initiate AI-based discussions</span></li>
+            <li><span class="policy-mark" aria-hidden="true">✗</span><span>Paste WGU course materials into AI tools</span></li>
+            <li><span class="policy-mark" aria-hidden="true">✗</span><span>Ask students to place WGU content into AI systems</span></li>
+            <li><span class="policy-mark" aria-hidden="true">✗</span><span>Store coaching session notes or student information in AI tools</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
