@@ -7,9 +7,12 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <style>
+    #app-wrapper, #app-wrapper * {
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+
     #app-wrapper {
-      font-family: Arial, sans-serif;
-      font-size: 14pt;
+      font-size: 16px;
       line-height: 1.5;
     }
     body { box-sizing: border-box; }
@@ -33,7 +36,7 @@
       border-radius: 2px;
     }
 
-    .person-card {
+    #app-wrapper .person-card {
       background: #ffffff;
       border-radius: 20px;
       box-shadow: 0 8px 22px rgba(0, 40, 85, 0.10);
@@ -45,11 +48,11 @@
       overflow: hidden;
     }
 
-    .senior-card { border-left: 8px solid #002855; }
-    .manager-card { border-left: 8px solid #0070F0; }
-    .supervisor-card { border-left: 8px solid #97E152; }
+    #app-wrapper .senior-card { border-left: 8px solid #002855; }
+    #app-wrapper .manager-card { border-left: 8px solid #0070F0; }
+    #app-wrapper .supervisor-card { border-left: 8px solid #97E152; }
 
-    .person-card:hover {
+    #app-wrapper .person-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(0, 40, 85, 0.14);
     }
@@ -59,6 +62,23 @@
       margin-left: auto;
       margin-right: auto;
     }
+  
+  #app-wrapper { font-size: 16px !important; }
+  #app-wrapper p, #app-wrapper span, #app-wrapper button {
+    font-size: 16px !important;
+  }
+  #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+  #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+  #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+  #app-wrapper h4 { font-size: 16px !important; line-height: 1.35 !important; }
+  @media (min-width: 768px) {
+    #app-wrapper h1 { font-size: 48px !important; }
+    #app-wrapper h2 { font-size: 30px !important; }
+  }
+  @media (min-width: 1024px) {
+    #app-wrapper h1 { font-size: 60px !important; }
+  }
+  #app-wrapper .person-card p { font-size: 14px !important; }
   </style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 </head>
@@ -151,13 +171,13 @@
         <div class="grid md:grid-cols-2 gap-7 max-w-5xl mx-auto">
           <article class="person-card supervisor-card p-7">
             <h3 class="text-2xl font-bold mb-1" style="color: #002855;">Jen Crain</h3>
-            <p class="font-semibold mb-4" style="color: #0070F0;">Training Supervisor</p>
+            <p class="font-semibold mb-4" style="color: #0070F0;">Onboarding Supervisor</p>
             <p class="text-gray-700 leading-relaxed">Jen leads the onboarding experience for all new interns, helping them build confidence and foundational coaching skills from day one. She oversees new hire training, specialized domain learning, and early development to ensure interns are prepared for success before transitioning to their ongoing leader.</p>
           </article>
 
           <article class="person-card supervisor-card p-7">
             <h3 class="text-2xl font-bold mb-1" style="color: #002855;">Bre Evenson</h3>
-            <p class="font-semibold mb-4" style="color: #0070F0;">Development Supervisor</p>
+            <p class="font-semibold mb-4" style="color: #0070F0;">Continuing Education Supervisor</p>
             <p class="text-gray-700 leading-relaxed">Bre partners with leaders to support ongoing intern growth through skill development, coaching quality, and targeted learning opportunities. She focuses on helping interns strengthen their coaching practice, deepen AFFIRM proficiency, and continue growing throughout their internship journey.</p>
           </article>
 
