@@ -1,0 +1,266 @@
+
+
+Pasted text(20261111-143145).txt
+Document
+Under training expectations, I want 3 side by side boxes.
+
+
+Box 1: Training completion - You must complete all training in the provided order and attend all scheduled workshops. Do not skip ahead. Remember to complete and submit all checkpoints to ensure your progress is recorded.
+
+
+Box 2: Sequential Training - Upon completion of the week's training, do not move forward to the next week. This sequential design allows for a focused understanding of specific aspects of your role. Please contact your Supervisor if you complete training early.
+
+
+Box 3: Quizzes and Progress - You will encounter quizzes throughout the course. Each quiz has limited attempts and, sometimes, a cooldown period before it can be taken again. Your progress and responses will be reviewed by your leaders each week. For additional attempts, you will need to reach out to Jennifer Crain on Teams.
+
+
+I want the text on this page to also be consistent Arial 14. Headers can be bigger, but keep it consistent. 
+
+
+Put Appointments before Live Events
+
+
+Under Getting Started, make it say "You will need to complete all checkpoints to get credit for completion. Please submit all quizzes and select "Mark as Done" at the bottom of the page."
+
+
+If you encounter technical errors with the course (such as broken links) please reach out to Jennifer Crain on Teams.
+
+…
+Training Expectations now has three side-by-side boxes that stack on narrow screens. Body text is Arial 14 pt, with consistent sizing at each heading level. Appointments comes before Live Events, and Getting Started includes the updated Mark as Done instructions and the Teams contact for technical errors.
+
+I checked the HTML source. The layout remains unverified in a live browser preview.
+
+
+Welcome_to_WGU_Week_One.html
+HTML
+wheres the raw html
+Here’s the raw HTML as a plain-text file. Open it to copy the full source.
+
+
+Welcome_to_WGU_Week_One_Source.txt
+Document
+
+
+
+
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Peer Coaching</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    #app-wrapper {
+      font-family: Arial, sans-serif;
+      font-size: 14pt;
+      line-height: 1.5;
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section-divider {
+      height: 3px;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+
+    .draggable-item {
+      cursor: grab;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .draggable-item:active {
+      cursor: grabbing;
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+
+    .drop-zone {
+      min-height: 120px;
+      transition: all 0.2s ease;
+      border: 2px dashed transparent;
+      border-radius: 8px;
+    }
+
+    .drop-zone.drag-over {
+      background-color: rgba(151, 225, 82, 0.1);
+      border-color: #97E152;
+    }
+
+    .placed-item {
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="h-full w-full overflow-auto" style="background: #ffffff;">
+   <header class="relative overflow-hidden" style="background: linear-gradient(135deg, #002855 0%, #0070F0 100%);">
+    <div class="absolute inset-0 opacity-5">
+     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs>
+       <pattern id="hero-pattern" x="0" y="0" width="80" height="80" patternunits="userSpaceOnUse">
+        <circle cx="40" cy="40" r="1" fill="white" />
+       </pattern>
+      </defs> <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+     </svg>
+    </div>
+    <div class="relative max-w-6xl mx-auto px-6 py-20 text-center">
+     <div class="fade-in" style="animation-delay: 0.1s;">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style="background: rgba(151, 225, 82, 0.2);"><span class="w-2 h-2 rounded-full animate-pulse" style="background: #97E152;"></span> <span class="font-medium" style="color: #97E152;">Week One</span>
+      </div>
+     </div>
+     <h1 id="main-title" class="fade-in text-5xl md:text-6xl font-bold text-white mb-6" style="animation-delay: 0.2s;">Welcome to WGU!</h1>
+     <p id="subtitle" class="fade-in max-w-3xl mx-auto" style="color: rgba(255,255,255,0.95); animation-delay: 0.3s;">"Changing Lives for the Better by Creating Pathways to Opportunity"</p>
+    </div>
+    <svg class="w-full" viewbox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="none" style="display: block; margin-bottom: -1px;"><path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#ffffff" />
+    </svg>
+   </header>
+   <main class="max-w-6xl mx-auto px-6">
+    <section class="py-16 fade-in" style="animation-delay: 0.5s;">
+     <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4" style="color: #002855;">Welcome!</h2>
+      <div class="section-divider w-20 mx-auto mb-8"></div>
+     </div>
+     <div class="max-w-3xl mx-auto space-y-6">
+      <p class="text-gray-700 leading-relaxed">Welcome to this exciting journey of becoming an intern offering peer support at WGU! We're thrilled to have you join us. Over the next few weeks, you'll gain the knowledge and skills to empower others, foster growth, and make a positive impact.</p>
+      <p class="text-gray-700 leading-relaxed">Through this program, you will develop the skills to cultivate meaningful peer relationships, utilize powerful coaching strategies, and play a vital role in your peers' academic achievements. We can't wait to see you flourish as a skilled and compassionate peer!</p>
+      <div class="bg-blue-50 border-l-4 p-6 rounded-lg" style="border-left-color: #0070F0;">
+       <p class="text-gray-700 leading-relaxed"><strong style="color: #002855;">This hands-on training encourages active participation.</strong> Stay focused, limit distractions, and reflect on the material to maximize your learning. By holding yourself accountable, you'll not only support your peers but also enhance your own understanding. Please be fully present during training.</p>
+      </div>
+     </div>
+    </section>
+    <section class="py-16 fade-in" style="animation-delay: 0.6s;">
+     <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4" style="color: #002855;">Training Expectations</h2>
+      <div class="section-divider w-20 mx-auto mb-8"></div>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl p-6 shadow-md border-l-4" style="border-left-color: #0070F0;">
+       <h3 class="font-bold text-2xl mb-4" style="color: #002855;">Training Completion</h3>
+       <p class="text-gray-700">You must complete all training in the provided order and attend all scheduled workshops. Do not skip ahead. Remember to complete and submit all checkpoints to ensure your progress is recorded.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-md border-l-4" style="border-left-color: #46B1EF;">
+       <h3 class="font-bold text-2xl mb-4" style="color: #002855;">Sequential Training</h3>
+       <p class="text-gray-700">Upon completion of the week's training, do not move forward to the next week. This sequential design allows for a focused understanding of specific aspects of your role. Please contact your Supervisor if you complete training early.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-md border-l-4" style="border-left-color: #97E152;">
+       <h3 class="font-bold text-2xl mb-4" style="color: #002855;">Quizzes and Progress</h3>
+       <p class="text-gray-700">You will encounter quizzes throughout the course. Each quiz has limited attempts and, sometimes, a cooldown period before it can be taken again. Your progress and responses will be reviewed by your leaders each week.</p>
+      </div>
+     </div>
+    </section>
+    <section class="py-16 fade-in" style="animation-delay: 0.7s;">
+     <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4" style="color: #002855;">Peer Support Models</h2>
+      <div class="section-divider w-20 mx-auto mb-8"></div>
+     </div>
+     <p class="text-center text-gray-700 mb-12 max-w-2xl mx-auto">WGU offers two types of main support services, each with its own focus and approach.</p>
+     <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow-md border-l-4" style="border-left-color: #46B1EF;">
+       <h3 class="font-bold text-2xl mb-4" style="color: #002855;">Appointments</h3>
+       <p class="text-gray-700 leading-relaxed">Peer-to-peer appointments center around helping students to problem-solve, set goals, and improve their overall performance and success at WGU in a one-on-one setting. Peer Navigators use various strategies that encourage students to think critically and self-select solutions that work best for them.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-md border-l-4" style="border-left-color: #0070F0;">
+       <h3 class="font-bold text-2xl mb-4" style="color: #002855;">Live Events</h3>
+       <p class="text-gray-700 leading-relaxed">Peer-led live events are centered around learning strategies and helping students develop better study skills. Peer Navigators use various strategies that encourage students to engage with the course material and their fellow peers.</p>
+      </div>
+     </div>
+    </section>
+    <section class="py-16 fade-in" style="animation-delay: 0.8s;">
+     <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4" style="color: #002855;">Getting Started</h2>
+      <div class="section-divider w-20 mx-auto mb-8"></div>
+     </div>
+     <div class="max-w-3xl mx-auto bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-8 border border-indigo-200">
+      <p class="text-center text-gray-800 mb-6">You will need to <strong style="color: #002855;">complete all checkpoints</strong> to get credit for completion. Please submit all quizzes and select "Mark as Done" at the bottom of the page.</p>
+      <p class="text-center text-gray-800"><strong style="color: #002855;">If you encounter technical errors with the course (such as broken links)</strong>, please reach out to Jennifer Crain on Teams.</p>
+     </div>
+    </section>
+   </main>
+   <footer class="mt-12 py-8" style="background: #002855;">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+     <div class="flex justify-center gap-4 mb-4">
+      <div class="w-3 h-3 rounded-full" style="background: #0070F0;"></div>
+      <div class="w-3 h-3 rounded-full" style="background: #46B1EF;"></div>
+      <div class="w-3 h-3 rounded-full" style="background: #97E152;"></div>
+     </div>
+     <p class="text-white opacity-80">Week One: Welcome to WGU</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: "Welcome to Peer Coaching",
+      subtitle: "Empowering others and building meaningful peer relationships",
+      primary_color: "#002855",
+      accent_color: "#0070F0",
+      highlight_color: "#97E152",
+      text_color: "#374151"
+    };
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          const titleEl = document.getElementById('main-title');
+          if (titleEl) titleEl.textContent = config.main_title || defaultConfig.main_title;
+
+          const subtitleEl = document.getElementById('subtitle');
+          if (subtitleEl) subtitleEl.textContent = config.subtitle || defaultConfig.subtitle;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+            },
+            {
+              get: () => config.highlight_color || defaultConfig.highlight_color,
+              set: (value) => { config.highlight_color = value; window.elementSdk.setConfig({ highlight_color: value }); }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+            }
+          ],
+          borderables: []
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["main_title", config.main_title || defaultConfig.main_title],
+          ["subtitle", config.subtitle || defaultConfig.subtitle]
+        ])
+      });
+    }
+  </script>
+ </body>
+</html>
