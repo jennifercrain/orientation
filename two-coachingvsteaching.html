@@ -1,0 +1,415 @@
+!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coaching, Teaching, Advising, Avoiding</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body { box-sizing: border-box; }
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    .section-divider { height: 4px; background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%); border-radius: 2px; }
+    .role-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .role-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,40,85,.12); }
+    .scenario-panel { display: none; }
+    .scenario-panel.active { display: block; }
+    .scenario-tab.active { background: #002855; color: #fff; border-color: #002855; }
+    .quiz-option { transition: all .2s ease; }
+    .quiz-option:hover { border-color: #0070F0; background: rgba(0,112,240,.04); }
+    .quiz-option.correct { border-color: #16a34a; background: #dcfce7; }
+    .quiz-option.incorrect { border-color: #dc2626; background: #fee2e2; }
+  #app-wrapper { --blue: #0070F0; --navy: #002855; color: #000; font-size: 16px; line-height: 1.55; }
+  #app-wrapper :is(p, li, span) { font-size: 16px; }
+  #app-wrapper, #app-wrapper * { box-sizing: border-box; }
+  #app-wrapper, #app-wrapper * { font-family: Arial, "Liberation Sans", sans-serif !important; }
+  #app-wrapper h1 { color: #fff; font-size: 36px; line-height: 1.1; font-weight: 700; }
+  #app-wrapper h2 { color: var(--navy); font-size: 24px; line-height: 1.2; font-weight: 700; }
+  #app-wrapper h3 { color: var(--navy); font-size: 20px; line-height: 1.25; font-weight: 700; }
+  #app-wrapper :is(p, li) :is(span, strong) { font-size: inherit; }
+  #app-wrapper main :is(p, li) { color: #000; }
+  #app-wrapper main :is(p, li) :is(em, span:not(.text-white)) { color: inherit; }
+  #app-wrapper strong { color: var(--blue); font-weight: 700; }
+  @media (min-width: 768px) {
+    #app-wrapper h1 { font-size: 48px; }
+    #app-wrapper h2 { font-size: 30px; }
+  }
+  @media (min-width: 1024px) {
+    #app-wrapper h1 { font-size: 60px; }
+  }
+  #app-wrapper :is(button, .quiz-feedback) { font-size: 16px; }
+  #app-wrapper h4 { color: var(--navy); font-size: 16px; line-height: 1.35; font-weight: 700; }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+<body class="h-full">
+<div id="app-wrapper" class="h-full w-full overflow-auto" style="background-color:#FFFFFF;">
+
+  <!-- Hero Section: visual treatment retained from current page -->
+  <header class="relative overflow-hidden" style="background:linear-gradient(135deg,#002855 0%,#0070F0 100%);">
+    <div class="absolute inset-0 opacity-10">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs><pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="30" cy="30" r="2" fill="white"/></pattern></defs>
+        <rect width="100%" height="100%" fill="url(#hero-pattern)"/>
+      </svg>
+    </div>
+    <div class="relative max-w-6xl mx-auto px-6 py-16 text-center">
+      <div class="fade-in" style="animation-delay:.1s;">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style="background:rgba(151,225,82,.2);">
+          <span class="w-2 h-2 rounded-full animate-pulse" style="background:#97E152;"></span>
+          <span class="font-medium" style="color:#97E152;">Week Two Training</span>
+        </div>
+      </div>
+      <h1 id="main-title" class="fade-in font-bold text-white mb-6" style="animation-delay:.2s;">Coaching, Teaching, Advising, Avoiding</h1>
+      <p id="subtitle" class="fade-in max-w-3xl mx-auto mb-8" style="color:rgba(255,255,255,.9);animation-delay:.3s;">Recognize the difference, stay within role boundaries, and keep students moving forward.</p>
+      <div class="fade-in flex flex-wrap justify-center gap-4" style="animation-delay:.4s;">
+        <button onclick="scrollToSection('roles')" class="px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105" style="background:#97E152;color:#002855;">Explore the Four Approaches</button>
+        <button onclick="scrollToSection('scenarios')" class="px-6 py-3 rounded-lg font-semibold border-2 border-white text-white transition-all hover:bg-white hover:text-[#002855]">See Scenarios</button>
+      </div>
+    </div>
+    <svg class="w-full" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;margin-bottom:-1px;">
+      <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF"/>
+    </svg>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6">
+
+    <!-- Core principle -->
+    <section class="py-12 fade-in" style="animation-delay:.5s;">
+      <div class="text-center mb-8">
+        <h2 class="font-bold mb-4" style="color:#002855;">The Difference Is in the Action</h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+        <p class="font-semibold max-w-4xl mx-auto leading-relaxed" style="color:#002855;">
+          Teaching gives <span style="color:#0070F0;">answers</span>. Advising gives <span style="color:#0070F0;">suggestions</span>. Coaching creates <span style="color:#0070F0;">action</span>.
+        </p>
+      </div>
+
+      <div class="rounded-2xl p-8" style="background:linear-gradient(135deg,rgba(0,40,85,.05) 0%,rgba(0,112,240,.05) 100%);">
+        <h3 class="font-bold mb-5" style="color:#002855;">Peer interns...</h3>
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="flex items-start gap-3 bg-white rounded-xl p-5 shadow-sm">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold" style="background:#97E152;color:#002855;">1</div>
+            <p class="">Help students become resourceful. Teaching actions are only used when sharing an example of applying a <strong>strategy</strong>—not course content.</p>
+          </div>
+          <div class="flex items-start gap-3 bg-white rounded-xl p-5 shadow-sm">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-white" style="background:#0070F0;">2</div>
+            <p class="">Coach students on how they can change their approach to their course or how they will incorporate and apply resources.</p>
+          </div>
+          <div class="flex items-start gap-3 bg-white rounded-xl p-5 shadow-sm">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-white" style="background:#46B1EF;">3</div>
+            <p class="">Use personal experience with academic strategies and resources to relate and build trust when appropriate—not to advise, direct, or solve problems for students.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Four role framework -->
+    <section id="roles" class="py-12">
+      <div class="text-center mb-10 fade-in">
+        <h2 class="font-bold mb-4" style="color:#002855;">Four Approaches at a Glance</h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+        <p class="max-w-3xl mx-auto">Use the goal, actions, common statements, and guidance below to recognize what is happening in an interaction.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <!-- Coaching -->
+        <article class="role-card bg-white rounded-2xl p-7 shadow-lg border border-gray-100 border-l-4" style="border-left-color:#97E152;">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:#97E152;color:#002855;">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a10.87 10.87 0 01-4-.75L3 20l1.27-3.81A7.34 7.34 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            </div>
+            <div><h3 class="font-bold" style="color:#002855;">Coaching</h3><p class="font-semibold" style="color:#0070F0;">Creates action</p></div>
+          </div>
+          <div class="space-y-5">
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Goal</h4><p>Guide the student’s thinking to facilitate their independence—be the “guard rails.”</p></div>
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Actions</h4><p>Questioning, Listening, Prompting, Reflecting, Guiding, Facilitating</p></div>
+            <div><h4 class="font-bold mb-2" style="color:#002855;">Example Statements</h4><div class="grid sm:grid-cols-2 gap-2"><p class="bg-gray-50 rounded-lg p-3">“What have you tried?”</p><p class="bg-gray-50 rounded-lg p-3">“What do you already know about this?”</p><p class="bg-gray-50 rounded-lg p-3">“What feels most overwhelming?”</p><p class="bg-gray-50 rounded-lg p-3">“When you read this, what stands out?”</p></div></div>
+            <div class="rounded-xl p-4" style="background:rgba(151,225,82,.12);"><h4 class="font-bold mb-1" style="color:#002855;">When to Use</h4><p><strong>Any time, as often as possible.</strong> Question what students have tried, how they’re processing information, where they feel stuck, and what they will do next.</p></div>
+          </div>
+        </article>
+
+        <!-- Teaching -->
+        <article class="role-card bg-white rounded-2xl p-7 shadow-lg border border-gray-100 border-l-4" style="border-left-color:#0070F0;">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white" style="background:#0070F0;">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <div><h3 class="font-bold" style="color:#002855;">Teaching</h3><p class="font-semibold" style="color:#0070F0;">Gives answers</p></div>
+          </div>
+          <div class="space-y-5">
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Goal</h4><p>Give your own knowledge and expertise to another person.</p></div>
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Actions</h4><p>Explaining, Defining, Demonstrating, Showing, Telling, Modeling, Evaluating, Quizzing</p></div>
+            <div><h4 class="font-bold mb-2" style="color:#002855;">Example Statements</h4><div class="grid sm:grid-cols-2 gap-2"><p class="bg-gray-50 rounded-lg p-3">“This means…”</p><p class="bg-gray-50 rounded-lg p-3">“This is when...”</p><p class="bg-gray-50 rounded-lg p-3">“The difference is...”</p><p class="bg-gray-50 rounded-lg p-3">“This is wrong because...”</p></div></div>
+            <div class="rounded-xl p-4" style="background:rgba(0,112,240,.08);"><h4 class="font-bold mb-1" style="color:#002855;">When to Use</h4><p><strong>Briefly</strong> during Focused Instruction (“I do”) when sharing how you use a strategy or locate a resource—not directing students to do exactly what you do.</p><p class="mt-2 font-bold" style="color:#002855;">Never focused on content. Period. No exception.</p></div>
+          </div>
+        </article>
+
+        <!-- Advising -->
+        <article class="role-card bg-white rounded-2xl p-7 shadow-lg border border-gray-100 border-l-4" style="border-left-color:#46B1EF;">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white" style="background:#46B1EF;">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div><h3 class="font-bold" style="color:#002855;">Advising</h3><p class="font-semibold" style="color:#0070F0;">Gives suggestions</p></div>
+          </div>
+          <div class="space-y-5">
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Goal</h4><p>Direct the student’s next steps or actions with no practice or demonstration attached.</p></div>
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Actions</h4><p>Recommending, Suggesting, Directing, Instructing, Telling, Dictating</p></div>
+            <div><h4 class="font-bold mb-2" style="color:#002855;">Example Statements</h4><div class="grid sm:grid-cols-2 gap-2"><p class="bg-gray-50 rounded-lg p-3">“What you need to do is...”</p><p class="bg-gray-50 rounded-lg p-3">“Start with…”</p><p class="bg-gray-50 rounded-lg p-3">“I’d say you should...”</p><p class="bg-gray-50 rounded-lg p-3">“You can just...”</p></div></div>
+            <div class="rounded-xl p-4" style="background:rgba(70,177,239,.1);"><h4 class="font-bold mb-1" style="color:#002855;">When to Use</h4><p>Advising should be <strong>extremely limited</strong>. Keep it focused on the student by following up with powerful questions that empower their own decision making.</p></div>
+          </div>
+        </article>
+
+        <!-- Avoiding -->
+        <article class="role-card bg-white rounded-2xl p-7 shadow-lg border border-gray-100 border-l-4" style="border-left-color:#002855;">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white" style="background:#002855;">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-12.728 12.728m0-12.728l12.728 12.728"/></svg>
+            </div>
+            <div><h3 class="font-bold" style="color:#002855;">Avoiding</h3><p class="font-semibold" style="color:#0070F0;">Stops the process</p></div>
+          </div>
+          <div class="space-y-5">
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Goal</h4><p>Redirect or disengage without supporting the student’s learning process.</p></div>
+            <div><h4 class="font-bold mb-1" style="color:#002855;">Actions</h4><p>Dismissing, Deflecting, Redirecting Prematurely, Passing Off Responsibility</p></div>
+            <div><h4 class="font-bold mb-2" style="color:#002855;">Example Statements</h4><div class="grid sm:grid-cols-2 gap-2"><p class="bg-gray-50 rounded-lg p-3">“That’s for your CI.”</p><p class="bg-gray-50 rounded-lg p-3">“I can’t help with that.”</p><p class="bg-gray-50 rounded-lg p-3 sm:col-span-2">“You should try an Academic Coach.”</p></div></div>
+            <div class="rounded-xl p-4" style="background:rgba(0,40,85,.06);"><h4 class="font-bold mb-1" style="color:#002855;">When to Use</h4><p><strong>Never.</strong> Peer interns follow the redirecting process to stay within support role boundaries before sending students elsewhere.</p></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Why it matters -->
+    <section class="py-12">
+      <div class="text-center mb-10 fade-in">
+        <h2 class="font-bold mb-4" style="color:#002855;">What Happens When Peers Shift Out of Coaching?</h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <h3 class="font-bold mb-3" style="color:#002855;">When Peers Teach</h3>
+          <p class="leading-relaxed">They can end up focusing too much on solving the immediate issue instead of helping the student build skills they can use across courses. This can lead to confusion if something is explained incorrectly or outside of scope, which can make things harder for the student later on during assessments.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <h3 class="font-bold mb-3" style="color:#002855;">When Peers Advise</h3>
+          <p class="leading-relaxed">They may share information that worked for them but is not necessarily best practice or applicable to all situations. Without sourcing information, guidance may be incorrect, outdated, or not apply across courses, situations, or schools at WGU. Advising without coaching and demonstrating also leaves no action attached for the student to practice.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <h3 class="font-bold mb-3" style="color:#002855;">When Peers Avoid</h3>
+          <p class="leading-relaxed">This can leave students stuck, slowing their progress and wasting valuable time that could have been used to move them forward. It also limits opportunities for meaningful peer-to-peer connection and shared problem-solving.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scenarios -->
+    <section id="scenarios" class="py-12">
+      <div class="text-center mb-8 fade-in">
+        <h2 class="font-bold mb-4" style="color:#002855;">Scenario Examples</h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+        <p class="max-w-3xl mx-auto">Compare how the same student request changes depending on whether the interaction uses coaching, teaching, advising, or avoiding.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <button id="tab-quiz" class="scenario-tab active px-5 py-2.5 rounded-lg border-2 font-semibold" onclick="showScenario('quiz')">Chapter Quiz Scenario</button>
+        <button id="tab-pa" class="scenario-tab px-5 py-2.5 rounded-lg border-2 font-semibold" style="border-color:#002855;color:#002855;" onclick="showScenario('pa')">Performance Assessment Scenario</button>
+      </div>
+
+      <!-- Quiz scenario -->
+      <div id="scenario-quiz" class="scenario-panel active">
+        <div class="rounded-2xl p-6 mb-6" style="background:linear-gradient(135deg,rgba(0,40,85,.05) 0%,rgba(0,112,240,.05) 100%);">
+          <p class="font-semibold mb-2">Your student is looking for guidance on strategies to influence others.</p>
+          <p class="font-bold" style="color:#002855;">“I keep failing the chapter quiz. On question 2, I don’t understand why my answer is wrong.”</p>
+        </div>
+        <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#97E152;"><h3 class="font-bold mb-3" style="color:#002855;">Coaching</h3><div class="space-y-3"><p>“Walk me through how you’re breaking down this question and what you think it’s asking.”</p><p>“Let’s try the process of elimination. Based on what you said, which do you think we can get rid of?”</p><p>“How would you check your understanding?”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer stays curious, asking about the student’s approach and thought process without taking over.</p></div>
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#0070F0;"><h3 class="font-bold mb-3" style="color:#002855;">Teaching</h3><div class="space-y-3"><p>“Okay, so on question 2 it’s asking you which statement is accurate when it comes to making personal appeals with credibility, logic, and emotion.”</p><p>“A, C, and D are all wrong because all three are effective; it just really depends on context and what you’re trying to do. Think about it—when would logic be bad in a presentation? The other answers don’t make sense.”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer jumps in, explains the question, and explains the answer, limiting the student’s opportunity to process independently.</p></div>
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#46B1EF;"><h3 class="font-bold mb-3" style="color:#002855;">Advising</h3><div class="space-y-3"><p>“You should click through all the answer choices; it will tell you why it’s wrong.”</p><p>“You can also go into WGU Connect and see if there’s any resources there or make a post and ask.”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer tells the student what to do and where to go, versus demonstrating or practicing.</p></div>
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#002855;"><h3 class="font-bold mb-3" style="color:#002855;">Avoiding</h3><div class="space-y-3"><p>“Sorry, I can’t help you with the quizzes. Content is for your CI because they’re subject matter experts; I’m just a peer.”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer minimizes what they can offer and sends the student to another person.</p></div>
+        </div>
+      </div>
+
+      <!-- PA scenario -->
+      <div id="scenario-pa" class="scenario-panel">
+        <div class="rounded-2xl p-6 mb-6" style="background:linear-gradient(135deg,rgba(0,40,85,.05) 0%,rgba(0,112,240,.05) 100%);">
+          <p class="font-semibold mb-2">Your student is looking for guidance on their performance assessment.</p>
+          <p class="font-bold" style="color:#002855;">“I was hoping you could look over my task for me and let me know if it’s ready to submit. I’m worried I’m missing something.”</p>
+        </div>
+        <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-5">
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#97E152;"><h3 class="font-bold mb-3" style="color:#002855;">Coaching</h3><div class="space-y-3"><p>“How do you usually check your work?”</p><p>“Let’s look at some PA resources together. This one here talks about organizing your paper using the A, A1, etc. headers. Using this, how might you change the way your task is laid out?”</p><p>“If we put these headers into a checklist, what feels incomplete? How might you expand that idea?”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer gives the student steps and a repeatable process they can use to check their work.</p></div>
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#0070F0;"><h3 class="font-bold mb-3" style="color:#002855;">Teaching</h3><div class="space-y-3"><p>“Absolutely, let’s look at it together.”</p><p>“So, in this section, it wants you to explain the difference between a learning objective and a learning goal and give some examples. You only explained the objective. Think of the objectives as the immediate next steps and the goal as the overall broad idea that the steps are moving you towards.”</p><p>“This sounds like you’re quoting something. You’ll want to insert a citation.”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer is <em>evaluating</em> the student’s work and providing instruction on what they did or need to do.</p></div>
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#46B1EF;"><h3 class="font-bold mb-3" style="color:#002855;">Advising</h3><div class="space-y-3"><p>“What I always do is just submit it. The worst case is I got the PA back and submitted it again. We have unlimited attempts. That’s always worked for me; I recommend going ahead and submitting it to get that evaluator’s feedback.”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer gives misguided guidance based on personal experience that may not reflect best practices or support skill development.</p></div>
+          <div class="bg-white rounded-2xl p-5 shadow-md border-t-4" style="border-top-color:#002855;"><h3 class="font-bold mb-3" style="color:#002855;">Avoiding</h3><div class="space-y-3"><p>“I can’t look at your task with you. That’s more of something that a writing coach in the Academic Coaching Center can help you with.”</p></div><p class="mt-4 pt-4 border-t font-semibold" style="color:#002855;">The peer sends the student to another department without attempting to support them.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Working Practice Quiz -->
+    <section id="practice" class="py-12">
+      <div class="text-center mb-10 fade-in">
+        <h2 class="font-bold mb-4" style="color:#002855;">Practice: What Approach Is This?</h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+        <p class="max-w-3xl mx-auto">Choose the approach that best describes each response. Feedback appears immediately after you select an answer.</p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="quiz-card bg-white rounded-2xl p-6 shadow-md border border-gray-100" data-correct="coaching">
+          <p class="font-semibold mb-5">1. A student says they do not know where to begin. The peer asks, “What feels most manageable right now, and what could your first step be?”</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'coaching')">Coaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'teaching')">Teaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'advising')">Advising</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'avoiding')">Avoiding</button>
+          </div>
+          <div class="quiz-feedback hidden mt-4 rounded-lg p-4 font-semibold"></div>
+        </div>
+
+        <div class="quiz-card bg-white rounded-2xl p-6 shadow-md border border-gray-100" data-correct="teaching">
+          <p class="font-semibold mb-5">2. A peer says, “This is wrong because the concept actually means...” and then explains the course content.</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'coaching')">Coaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'teaching')">Teaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'advising')">Advising</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'avoiding')">Avoiding</button>
+          </div>
+          <div class="quiz-feedback hidden mt-4 rounded-lg p-4 font-semibold"></div>
+        </div>
+
+        <div class="quiz-card bg-white rounded-2xl p-6 shadow-md border border-gray-100" data-correct="advising">
+          <p class="font-semibold mb-5">3. A peer responds, “What you need to do is start with the template and then submit it once you finish the first section.”</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'coaching')">Coaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'teaching')">Teaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'advising')">Advising</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'avoiding')">Avoiding</button>
+          </div>
+          <div class="quiz-feedback hidden mt-4 rounded-lg p-4 font-semibold"></div>
+        </div>
+
+        <div class="quiz-card bg-white rounded-2xl p-6 shadow-md border border-gray-100" data-correct="avoiding">
+          <p class="font-semibold mb-5">4. A student asks for help getting unstuck. The peer immediately says, “That’s for your CI. I can’t help with that.”</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'coaching')">Coaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'teaching')">Teaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'advising')">Advising</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'avoiding')">Avoiding</button>
+          </div>
+          <div class="quiz-feedback hidden mt-4 rounded-lg p-4 font-semibold"></div>
+        </div>
+
+        <div class="quiz-card bg-white rounded-2xl p-6 shadow-md border border-gray-100" data-correct="coaching">
+          <p class="font-semibold mb-5">5. A peer briefly demonstrates how they use a planning strategy, then asks the student how they might adapt the process for their own work.</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'coaching')">Coaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'teaching')">Teaching</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'advising')">Advising</button>
+            <button type="button" class="quiz-option border-2 border-gray-200 rounded-lg p-3 text-left" onclick="checkAnswer(this,'avoiding')">Avoiding</button>
+          </div>
+          <div class="quiz-feedback hidden mt-4 rounded-lg p-4 font-semibold"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-12">
+      <div class="rounded-2xl p-8 text-center" style="background:linear-gradient(135deg,#002855 0%,#0070F0 100%);">
+        <p class="text-white font-bold">Keep the student thinking. Keep the student practicing. Keep the student moving.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer retained from current page -->
+</div>
+
+<script>
+  function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function showScenario(which) {
+    document.querySelectorAll('.scenario-panel').forEach(panel => panel.classList.remove('active'));
+    document.querySelectorAll('.scenario-tab').forEach(tab => {
+      tab.classList.remove('active');
+      tab.style.borderColor = '#002855';
+      tab.style.color = '#002855';
+      tab.style.background = 'white';
+    });
+    document.getElementById('scenario-' + which).classList.add('active');
+    const activeTab = document.getElementById('tab-' + which);
+    activeTab.classList.add('active');
+    activeTab.style.background = '#002855';
+    activeTab.style.color = 'white';
+  }
+
+  function checkAnswer(button, selected) {
+    const card = button.closest('.quiz-card');
+    const correct = card.dataset.correct;
+    const feedback = card.querySelector('.quiz-feedback');
+    const options = card.querySelectorAll('.quiz-option');
+
+    options.forEach(option => {
+      option.classList.remove('correct', 'incorrect');
+      option.disabled = false;
+    });
+
+    if (selected === correct) {
+      button.classList.add('correct');
+      feedback.textContent = '✓ Correct. This response matches ' + capitalize(correct) + '.';
+      feedback.style.background = '#dcfce7';
+      feedback.style.color = '#166534';
+    } else {
+      button.classList.add('incorrect');
+      options.forEach(option => {
+        if (option.textContent.trim().toLowerCase() === correct) option.classList.add('correct');
+      });
+      feedback.textContent = '✗ Not quite. This is ' + capitalize(correct) + '.';
+      feedback.style.background = '#fee2e2';
+      feedback.style.color = '#991b1b';
+    }
+
+    feedback.classList.remove('hidden');
+  }
+
+  function capitalize(value) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+
+  const defaultConfig = {
+    main_title: 'Coaching, Teaching, Advising, Avoiding',
+    subtitle: 'Recognize the difference, stay within role boundaries, and keep students moving forward.',
+    background_color: '#FFFFFF',
+    primary_color: '#002855',
+    accent_color: '#0070F0',
+    highlight_color: '#97E152',
+    text_color: '#000000'
+  };
+
+  if (window.elementSdk) {
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => {
+        const titleEl = document.getElementById('main-title');
+        if (titleEl) titleEl.textContent = config.main_title || defaultConfig.main_title;
+        const subtitleEl = document.getElementById('subtitle');
+        if (subtitleEl) subtitleEl.textContent = config.subtitle || defaultConfig.subtitle;
+        const wrapper = document.getElementById('app-wrapper');
+        if (wrapper) wrapper.style.backgroundColor = config.background_color || defaultConfig.background_color;
+      },
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); } },
+          { get: () => config.primary_color || defaultConfig.primary_color, set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); } },
+          { get: () => config.accent_color || defaultConfig.accent_color, set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); } },
+          { get: () => config.highlight_color || defaultConfig.highlight_color, set: (value) => { config.highlight_color = value; window.elementSdk.setConfig({ highlight_color: value }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); } }
+        ],
+        borderables: []
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ['main_title', config.main_title || defaultConfig.main_title],
+        ['subtitle', config.subtitle || defaultConfig.subtitle]
+      ])
+    });
+  }
+</script>
+</body>
+</html>
