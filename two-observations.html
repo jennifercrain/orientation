@@ -86,7 +86,13 @@
   }
   #app-wrapper main ol { font-size: 16px; color: #000; }
   #app-wrapper main p.font-bold { color: var(--blue); }
-  </style>
+    #app-wrapper .observation-resources { max-width: 64rem; margin-inline: auto; padding: 0 0 3rem; }
+  #app-wrapper .observation-resources h2 { margin: 0 0 1rem; text-align: center; }
+  #app-wrapper .observation-resources .section-divider { width: 5rem; margin: 0 auto 1.5rem; }
+  #app-wrapper .observation-resources ul { margin: 0; padding-left: 1.25rem; list-style: disc; }
+  #app-wrapper .observation-resources li + li { margin-top: .5rem; }
+  #app-wrapper .observation-resources a { color: var(--blue); font-size: inherit; font-weight: 700; text-decoration: underline; }
+</style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
@@ -148,7 +154,7 @@
          <p class="mt-3">Toggle "Teams meeting" ON for 1:1 observations</p>
         </div>
        </div>
-       <p class="mt-4"><em>Note: Camera and microphone not required. Your honest reflections are strictly between you and the training Supervisor.</em></p>
+       <p class="mt-4"><em>Note: Camera and microphone not required. Your honest reflections are strictly between you and your Supervisor.</em></p>
       </div>
       <div class="bg-white rounded-2xl overflow-hidden shadow-md border-t-4 p-8" style="border-top-color: #0070F0;">
        <h3 class="font-bold mb-4" style="color: #002855;">Live Event Observations</h3>
@@ -174,11 +180,19 @@
       </div>
      </div>
     </section>
+    <section class="observation-resources" aria-labelledby="helpful-resources">
+     <h2 id="helpful-resources">Helpful Resources</h2>
+     <div class="section-divider"></div>
+     <ul>
+      <li><a href="REPLACE_WITH_HOST_GUIDE_URL">How to Host a Call Observation</a> (for Appointment coaches — share with your host!)</li>
+      <li><a href="REPLACE_WITH_OBSERVATION_FORM_URL">Observation Form</a></li>
+     </ul>
+    </section>
    </main>
   </div>
   <script>
     const defaultConfig = {
-      main_title: "Peer Observations",
+      main_title: "Peer Coaching Observations",
       subtitle: "Shadow appointments and live events to develop your coaching skills",
       primary_color: "#002855",
       accent_color: "#0070F0",
