@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindset</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 1.5rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .exchange-reminder {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper a {
+      color: #002855;
+      font-weight: bold;
+      text-underline-offset: 0.15em;
+    }
+    #app-wrapper blockquote {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+    #app-wrapper .topic-card { display: block; text-decoration: none; }
+    #app-wrapper .topic-card p { color: #374151; font-weight: normal; }
+    #app-wrapper .topic-card:hover { border-color: #0070F0; }
+    #app-wrapper a:focus-visible, #app-wrapper input:focus-visible, #app-wrapper button:focus-visible {
+      outline: 3px solid #002855;
+      outline-offset: 4px;
+    }
+    #app-wrapper .practice { display: grid; gap: 1.5rem; }
+    #app-wrapper fieldset { margin: 0; min-width: 0; padding: 0; border: 0; }
+    #app-wrapper legend { padding: 0; color: #002855; font-weight: bold; }
+    #app-wrapper .choices { display: grid; gap: 0.5rem; margin-top: 0.65rem; }
+    #app-wrapper .choices label {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.5rem;
+      align-items: baseline;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    #app-wrapper input[type="radio"] { accent-color: #0070F0; margin: 0; }
+    #app-wrapper .answer-feedback {
+      display: none;
+      grid-column: 2;
+      padding: 0.6rem 0.75rem;
+      border-left: 3px solid #0070F0;
+      background: #F3F8FF;
+    }
+    #app-wrapper .choices input:checked ~ .answer-feedback { display: block; }
+    #app-wrapper .choices input:focus-visible + span { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Success Tools</div>
+        <h1>Mindset</h1>
+        <p>Help students examine what a difficult experience means to them and choose a response they can use.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="overview">
+        <h2 id="overview">About Mindset</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <p>Students’ interpretations of effort and setbacks can shape whether they stay engaged. A difficult quiz, an unfamiliar topic, or a mistake can lead a student to question their ability. A coaching conversation can help them describe the specific difficulty and recognize evidence they can build on.</p>
+          <div class="panel">
+            <h3>What You Might Hear</h3>
+            <ul>
+              <li>“I’m just not good at this.”</li>
+              <li>“Everyone else seems to get it but me.”</li>
+              <li>“If I can’t do it perfectly, I shouldn’t do it at all.”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="technique">
+        <h2 id="technique">Coaching Technique</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <h3>Reflect the concern and ask for specifics</h3>
+          <p>Acknowledge the experience, then ask what happened and which part was difficult. Use the student’s own words and look together at something concrete, such as a quiz item or rubric criterion.</p>
+          <aside class="callout">
+            <p><strong>What to watch for.</strong> Avoid arguing with how the student feels, diagnosing their thinking, or offering generic reassurance. Be warm and professional. Give the student room to find a realistic interpretation they can believe.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section aria-labelledby="strategies">
+        <h2 id="strategies">Strategies to Try</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <article class="panel flow">
+            <h3>Growth-Oriented Reframing</h3>
+            <p>Use this when a student interprets a difficult experience as evidence about their overall ability. Help them name the specific skill they’re still learning, then choose one way to practice it.</p>
+            <p><strong>Ask.</strong> “Looking at the questions you missed, what’s one skill you want to practice next?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Confidence Through Evidence</h3>
+            <p>Ask the student to recall a similar challenge they handled and identify what helped. Have them choose one part of that approach to reuse in the current course.</p>
+            <p><strong>Ask.</strong> “When have you worked through something like this before? What could you use again here?”</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="example">
+        <h2 id="example">Coaching in Action</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="panel flow">
+          <p><strong>Student.</strong> “I missed half the questions. I’m just bad at this.”</p>
+          <p><strong>Peer Navigator.</strong> “Missing that many felt discouraging. Looking at the questions, where did you feel least sure?”</p>
+          <p><strong>Student.</strong> “I could define the terms. I got mixed up when I had to apply them to scenarios.”</p>
+          <p><strong>Peer Navigator.</strong> “Knowing the definitions gives you something to build on. How would you describe what you need to practice next?”</p>
+          <p><strong>Student.</strong> “I need to practice spotting which term fits a scenario.”</p>
+          <p><strong>Peer Navigator.</strong> “Pick one missed scenario. What clue could you look for as you try it again?”</p>
+          <p><strong>Student.</strong> “I’ll look for what changed in the scenario. That helps me narrow down which term fits.”</p>
+        </div>
+        <div class="callout">
+          <p><strong>What the student did.</strong> The student moved from a broad judgment about their ability to a specific skill they could practice with a missed question.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="practice">
+        <h2 id="practice">Practice the Next Move</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="practice">
+          <blockquote>A student says, “I keep rewriting my draft. If it isn’t perfect, I shouldn’t submit anything.”</blockquote>
+          <div class="panel practice-question flow">
+            <fieldset>
+              <legend>Which response keeps the focus on the student?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-1"> <span id="question-1-option-1">Just submit it. You’re overthinking.</span> <span class="answer-feedback"><strong>No.</strong> This dismisses the concern and gives an instruction before exploring what the student is worried about.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-2"> <span id="question-1-option-2">What are you worried would happen if you stopped revising, and what does the rubric actually ask you to show?</span> <span class="answer-feedback"><strong>Yes.</strong> This acknowledges the concern and helps the student look at concrete expectations.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-3"> <span id="question-1-option-3">I was a perfectionist too. Let me tell you about my last three assignments.</span> <span class="answer-feedback"><strong>No.</strong> A long personal story shifts attention away from what the student is experiencing.</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="panel practice-question flow">
+            <fieldset>
+              <legend>After discussing what a complete first draft looks like, how could the student practice that idea now?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-1"> <span id="question-2-option-1">Ask them to repeat that the draft is good enough.</span> <span class="answer-feedback"><strong>No.</strong> A phrase may help. Give the student a chance to connect it to their own work.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-2"> <span id="question-2-option-2">Tell them that their draft will probably pass.</span> <span class="answer-feedback"><strong>No.</strong> You can’t know how the draft will be evaluated. Help the student work with the criteria they can see.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-3"> <span id="question-2-option-3">Ask them to compare one paragraph to one rubric criterion and identify what they would keep or change.</span> <span class="answer-feedback"><strong>Yes.</strong> The student applies a realistic standard to an actual piece of work.</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
