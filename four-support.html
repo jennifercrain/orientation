@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Activities</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      color: #000000;
+      background: #FFFFFF;
+      font-size: 16px !important;
+      line-height: 1.55;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3,
+    #app-wrapper p, #app-wrapper ul { margin: 0; }
+    #app-wrapper :is(p, li, .banner-label) { font-size: 16px !important; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2; color: #002855; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25; color: #002855; }
+    #app-wrapper strong { color: #0070F0; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #002855, #0070F0);
+      color: #FFFFFF;
+      text-align: center;
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.05; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding: 5rem 1.5rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.95); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main { max-width: 72rem; padding: 0 1.5rem 2rem; margin: 0 auto; }
+    #app-wrapper main > section { padding-block: 0.75rem; }
+    #app-wrapper main > section + section { padding-top: 1.5rem; }
+    #app-wrapper .section-heading { text-align: center; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 3px;
+      margin: 0.75rem auto 1.25rem;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+    }
+    #app-wrapper .content { max-width: 48rem; margin-inline: auto; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper .panel {
+      padding: 1.5rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 1rem;
+      background: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 40, 85, 0.1);
+    }
+    #app-wrapper .tracking { border-left-color: #97E152; }
+    #app-wrapper .activity-list { padding-left: 1.4rem; }
+    #app-wrapper .activity-list li + li { margin-top: 0.6rem; }
+    #app-wrapper .activity-list li::marker { color: #002855; }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="support-activities-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
+              <circle cx="40" cy="40" r="1" fill="#FFFFFF"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#support-activities-pattern)"/>
+        </svg>
+      </div>
+      <div class="banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Week Four</div>
+        <h1>Support Activities</h1>
+        <p>Use your Support Activity time to connect with students and follow through on their needs.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF"/>
+      </svg>
+    </header>
+
+    <main>
+      <section aria-labelledby="overview">
+        <h2 class="section-heading" id="overview">When to Work on Support Activities</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="content flow">
+          <p><strong>Support Activities are a required part of your internship.</strong> Set aside time for them according to the calendaring requirements. Also use time set aside for appointments or live events when no students have booked or signed up.</p>
+          <p>These activities let you support students outside scheduled sessions while building your coaching skills and contributing to the team. Find instructions, documents, and templates on the <strong>Support Activities</strong> page in SharePoint.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="calendaring">
+        <h2 class="section-heading" id="calendaring">Update Your Calendar</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="content flow">
+          <p>After you complete the activity, right-click the Support Activity block in Outlook and choose <strong>This event</strong> to edit that occurrence only. Rename the block to reflect the activity you completed.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="interaction-data">
+        <h2 class="section-heading" id="interaction-data">Log Student Interactions</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="content panel tracking flow">
+          <p>Use the <strong>Interaction Data Form</strong> to log student interactions from these Support Activities:</p>
+          <ul class="activity-list">
+            <li><strong>Community Exchanges.</strong> Log posts and replies by course.</li>
+            <li><strong>Student Touchpoints.</strong> Log a completed back-and-forth as an Email Exchange.</li>
+            <li><strong>Outreach Calling.</strong> Log outreach calls and follow-up emails under their corresponding categories.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
