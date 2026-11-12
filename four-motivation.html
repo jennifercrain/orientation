@@ -125,7 +125,8 @@
     #app-wrapper legend { padding: 0; color: #002855; font-weight: bold; }
     #app-wrapper .choices { display: grid; gap: 0.5rem; margin-top: 0.65rem; }
     #app-wrapper .choices label {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       gap: 0.5rem;
       align-items: baseline;
       padding: 0.6rem 0.75rem;
@@ -133,25 +134,16 @@
       border-radius: 0.5rem;
       cursor: pointer;
     }
-    #app-wrapper input[type="radio"] { accent-color: #0070F0; flex-shrink: 0; }
-    #app-wrapper .practice button {
-      padding: 0.6rem 1rem;
-      border: 0;
-      border-radius: 0.5rem;
-      background: #0070F0;
-      color: #FFFFFF;
-      font: inherit;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    #app-wrapper .practice button:hover { background: #002855; }
-    #app-wrapper .practice output:not(:empty) {
-      display: block;
-      padding: 0.65rem 0.8rem;
+    #app-wrapper input[type="radio"] { accent-color: #0070F0; margin: 0; }
+    #app-wrapper .answer-feedback {
+      display: none;
+      grid-column: 2;
+      padding: 0.6rem 0.75rem;
       border-left: 3px solid #0070F0;
       background: #F3F8FF;
     }
-    #app-wrapper .practice output[data-result="correct"] { border-color: #97E152; }
+    #app-wrapper .choices input:checked ~ .answer-feedback { display: block; }
+    #app-wrapper .choices input:focus-visible + span { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -245,52 +237,30 @@
         <div class="section-divider" aria-hidden="true"></div>
         <div class="practice">
           <blockquote>A student says, “I keep setting aside an hour after my shift, but I’m too tired to get much done.”</blockquote>
-          <form class="panel practice-question flow">
+          <div class="panel practice-question flow">
             <fieldset>
               <legend>What would you ask first?</legend>
               <div class="choices">
-                <label><input type="radio" name="question-1" required data-feedback="That suggests a schedule change before you know when the student has energy or time."> <span>Could you try setting an earlier alarm to study before work?</span></label>
-                <label><input type="radio" name="question-1" required data-correct data-feedback="This checks when the student can focus and whether that time is actually available."> <span>When do you usually have enough energy to focus, and what does your schedule look like then?</span></label>
-                <label><input type="radio" name="question-1" required data-feedback="This recognizes their effort but leaves the energy barrier unexplored."> <span>You’ve made time for school already, so just stay positive.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-1"> <span id="question-1-option-1">Could you try setting an earlier alarm to study before work?</span> <span class="answer-feedback"><strong>No.</strong> That suggests a schedule change before you know when the student has energy or time.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-2"> <span id="question-1-option-2">When do you usually have enough energy to focus, and what does your schedule look like then?</span> <span class="answer-feedback"><strong>Yes.</strong> This checks when the student can focus and whether that time is actually available.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-3"> <span id="question-1-option-3">You’ve made time for school already, so just stay positive.</span> <span class="answer-feedback"><strong>No.</strong> This recognizes their effort but leaves the energy barrier unexplored.</span></label>
               </div>
             </fieldset>
-            <button type="submit">Check response</button>
-            <output aria-live="polite" aria-atomic="true"></output>
-          </form>
-          <form class="panel practice-question flow">
+          </div>
+          <div class="panel practice-question flow">
             <fieldset>
               <legend>The student says they have more energy on Saturday mornings. After introducing Energy-Based Planning, what do you ask?</legend>
               <div class="choices">
-                <label><input type="radio" name="question-2" required data-correct data-feedback="The student applies the strategy by selecting a realistic time and a specific task."> <span>Can you open your calendar and choose one Saturday study window and one task that fits it?</span></label>
-                <label><input type="radio" name="question-2" required data-feedback="Agreement can start the conversation. Ask the student to choose a time and task so they can apply the idea."> <span>Does studying on Saturdays sound helpful?</span></label>
-                <label><input type="radio" name="question-2" required data-feedback="Start with one realistic trial and let the student decide whether the change fits."> <span>Can you commit to studying every Saturday for the rest of the term?</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-1"> <span id="question-2-option-1">Can you open your calendar and choose one Saturday study window and one task that fits it?</span> <span class="answer-feedback"><strong>Yes.</strong> The student applies the strategy by selecting a realistic time and a specific task.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-2"> <span id="question-2-option-2">Does studying on Saturdays sound helpful?</span> <span class="answer-feedback"><strong>No.</strong> Agreement can start the conversation. Ask the student to choose a time and task so they can apply the idea.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-3"> <span id="question-2-option-3">Can you commit to studying every Saturday for the rest of the term?</span> <span class="answer-feedback"><strong>No.</strong> Start with one realistic trial and let the student decide whether the change fits.</span></label>
               </div>
             </fieldset>
-            <button type="submit">Check response</button>
-            <output aria-live="polite" aria-atomic="true"></output>
-          </form>
+          </div>
         </div>
       </section>
 
     </main>
   </div>
-  <script>
-    document.querySelectorAll('.practice-question').forEach(form => {
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        const choice = form.querySelector('input:checked');
-        if (!choice) return;
-        const output = form.querySelector('output');
-        const correct = choice.hasAttribute('data-correct');
-        output.dataset.result = correct ? 'correct' : 'review';
-        output.textContent = (correct ? 'That’s a strong coaching move. ' : 'Consider another response. ') + choice.dataset.feedback;
-      });
-      form.addEventListener('change', () => {
-        const output = form.querySelector('output');
-        output.textContent = '';
-        delete output.dataset.result;
-      });
-    });
-  </script>
 </body>
 </html>
