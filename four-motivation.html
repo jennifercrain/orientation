@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burnout &amp; Motivation</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 1.5rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .exchange-reminder {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper a {
+      color: #002855;
+      font-weight: bold;
+      text-underline-offset: 0.15em;
+    }
+    #app-wrapper blockquote {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+    #app-wrapper .topic-card { display: block; text-decoration: none; }
+    #app-wrapper .topic-card p { color: #374151; font-weight: normal; }
+    #app-wrapper .topic-card:hover { border-color: #0070F0; }
+    #app-wrapper a:focus-visible, #app-wrapper input:focus-visible, #app-wrapper button:focus-visible {
+      outline: 3px solid #002855;
+      outline-offset: 4px;
+    }
+    #app-wrapper .practice { display: grid; gap: 1.5rem; }
+    #app-wrapper fieldset { margin: 0; min-width: 0; padding: 0; border: 0; }
+    #app-wrapper legend { padding: 0; color: #002855; font-weight: bold; }
+    #app-wrapper .choices { display: grid; gap: 0.5rem; margin-top: 0.65rem; }
+    #app-wrapper .choices label {
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    #app-wrapper input[type="radio"] { accent-color: #0070F0; flex-shrink: 0; }
+    #app-wrapper .practice button {
+      padding: 0.6rem 1rem;
+      border: 0;
+      border-radius: 0.5rem;
+      background: #0070F0;
+      color: #FFFFFF;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #app-wrapper .practice button:hover { background: #002855; }
+    #app-wrapper .practice output:not(:empty) {
+      display: block;
+      padding: 0.65rem 0.8rem;
+      border-left: 3px solid #0070F0;
+      background: #F3F8FF;
+    }
+    #app-wrapper .practice output[data-result="correct"] { border-color: #97E152; }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Success Tools</div>
+        <h1>Burnout &amp; Motivation</h1>
+        <p>Explore what makes it hard to start or sustain coursework, then help the student choose a manageable next step.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="overview">
+        <h2 id="overview">About Burnout &amp; Motivation</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <p>A student can understand what they need to do and still have trouble starting or following through. Low energy, competing demands, an overwhelming task, or uncertainty about why the work matters can each shape what feels doable.</p>
+          <div class="panel">
+            <h3>What You Might Hear</h3>
+            <ul>
+              <li>“I know what I need to do. I just can’t make myself start.”</li>
+              <li>“I feel so behind that I don’t see the point anymore.”</li>
+              <li>“By the time I sit down to study, I’m already exhausted.”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="technique">
+        <h2 id="technique">Coaching Technique</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <h3>Ask what happens at the point of starting</h3>
+          <p>Reflect what the student shared. Ask them to walk you through the last time they planned to study and listen for what got in the way. Check whether the barrier is the size of the task, the energy they have at study time, or something else.</p>
+          <aside class="callout">
+            <p><strong>What to watch for.</strong> Avoid labeling the student as burned out or unmotivated. Take what they describe seriously. Skip pep talks and ask what would make the next attempt feel manageable.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section aria-labelledby="strategies">
+        <h2 id="strategies">Strategies to Try</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <article class="panel flow">
+            <h3>Micro-Goal Reset</h3>
+            <p>Use this when the student feels overwhelmed by the size of a task. Open the task together, break it into smaller pieces, and ask the student to choose one piece they can start now.</p>
+            <p><strong>Ask.</strong> “Which part could you make smaller? What could you do in the next five minutes?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Energy-Based Planning</h3>
+            <p>Use this when the student repeatedly tries to study at a time when they have little energy. Look at a typical week together and have them pick an available window and a task that fits it.</p>
+            <p><strong>Ask.</strong> “When do you usually have enough energy to focus? What task could you try during one of those windows?”</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="example">
+        <h2 id="example">Coaching in Action</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="panel flow">
+          <p><strong>Student.</strong> “I open Task 2, see all the requirements, and close it again.”</p>
+          <p><strong>Peer Navigator.</strong> “Seeing the whole task at once sounds overwhelming. Which part feels hardest to begin?”</p>
+          <p><strong>Student.</strong> “The first section. I don’t know what to put in it.”</p>
+          <p><strong>Peer Navigator.</strong> “Would it help to break that section down? Open the rubric with me. What’s one thing the first criterion asks you to do?”</p>
+          <p><strong>Student.</strong> “Identify a stakeholder. I can list two possibilities now and choose one when I sit down tomorrow.”</p>
+          <p><strong>Peer Navigator.</strong> “You’ve got two possibilities on the page now. When tomorrow will you choose one?”</p>
+          <p><strong>Student.</strong> “At 7, after dinner. I’ll pick one before I draft anything.”</p>
+        </div>
+        <div class="callout">
+          <p><strong>What the student did.</strong> The student tried a Micro-Goal Reset by opening the rubric, identifying one requirement, and writing down two possibilities during the session.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="practice">
+        <h2 id="practice">Practice the Next Move</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="practice">
+          <blockquote>A student says, “I keep setting aside an hour after my shift, but I’m too tired to get much done.”</blockquote>
+          <form class="panel practice-question flow">
+            <fieldset>
+              <legend>What would you ask first?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-1" required data-feedback="That suggests a schedule change before you know when the student has energy or time."> <span>Could you try setting an earlier alarm to study before work?</span></label>
+                <label><input type="radio" name="question-1" required data-correct data-feedback="This checks when the student can focus and whether that time is actually available."> <span>When do you usually have enough energy to focus, and what does your schedule look like then?</span></label>
+                <label><input type="radio" name="question-1" required data-feedback="This recognizes their effort but leaves the energy barrier unexplored."> <span>You’ve made time for school already, so just stay positive.</span></label>
+              </div>
+            </fieldset>
+            <button type="submit">Check response</button>
+            <output aria-live="polite" aria-atomic="true"></output>
+          </form>
+          <form class="panel practice-question flow">
+            <fieldset>
+              <legend>The student says they have more energy on Saturday mornings. After introducing Energy-Based Planning, what do you ask?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-2" required data-correct data-feedback="The student applies the strategy by selecting a realistic time and a specific task."> <span>Can you open your calendar and choose one Saturday study window and one task that fits it?</span></label>
+                <label><input type="radio" name="question-2" required data-feedback="Agreement can start the conversation. Ask the student to choose a time and task so they can apply the idea."> <span>Does studying on Saturdays sound helpful?</span></label>
+                <label><input type="radio" name="question-2" required data-feedback="Start with one realistic trial and let the student decide whether the change fits."> <span>Can you commit to studying every Saturday for the rest of the term?</span></label>
+              </div>
+            </fieldset>
+            <button type="submit">Check response</button>
+            <output aria-live="polite" aria-atomic="true"></output>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script>
+    document.querySelectorAll('.practice-question').forEach(form => {
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const choice = form.querySelector('input:checked');
+        if (!choice) return;
+        const output = form.querySelector('output');
+        const correct = choice.hasAttribute('data-correct');
+        output.dataset.result = correct ? 'correct' : 'review';
+        output.textContent = (correct ? 'That’s a strong coaching move. ' : 'Consider another response. ') + choice.dataset.feedback;
+      });
+      form.addEventListener('change', () => {
+        const output = form.querySelector('output');
+        output.textContent = '';
+        delete output.dataset.result;
+      });
+    });
+  </script>
+</body>
+</html>
