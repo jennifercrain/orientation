@@ -125,7 +125,8 @@
     #app-wrapper legend { padding: 0; color: #002855; font-weight: bold; }
     #app-wrapper .choices { display: grid; gap: 0.5rem; margin-top: 0.65rem; }
     #app-wrapper .choices label {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       gap: 0.5rem;
       align-items: baseline;
       padding: 0.6rem 0.75rem;
@@ -133,25 +134,16 @@
       border-radius: 0.5rem;
       cursor: pointer;
     }
-    #app-wrapper input[type="radio"] { accent-color: #0070F0; flex-shrink: 0; }
-    #app-wrapper .practice button {
-      padding: 0.6rem 1rem;
-      border: 0;
-      border-radius: 0.5rem;
-      background: #0070F0;
-      color: #FFFFFF;
-      font: inherit;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    #app-wrapper .practice button:hover { background: #002855; }
-    #app-wrapper .practice output:not(:empty) {
-      display: block;
-      padding: 0.65rem 0.8rem;
+    #app-wrapper input[type="radio"] { accent-color: #0070F0; margin: 0; }
+    #app-wrapper .answer-feedback {
+      display: none;
+      grid-column: 2;
+      padding: 0.6rem 0.75rem;
       border-left: 3px solid #0070F0;
       background: #F3F8FF;
     }
-    #app-wrapper .practice output[data-result="correct"] { border-color: #97E152; }
+    #app-wrapper .choices input:checked ~ .answer-feedback { display: block; }
+    #app-wrapper .choices input:focus-visible + span { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -245,52 +237,30 @@
         <div class="section-divider" aria-hidden="true"></div>
         <div class="practice">
           <blockquote>A student says, “I’m studying every night, but I keep bouncing between practice quizzes, readings, and my next assignment.”</blockquote>
-          <form class="panel practice-question flow">
+          <div class="panel practice-question flow">
             <fieldset>
               <legend>How would you help the student decide what to work on?</legend>
               <div class="choices">
-                <label><input type="radio" name="question-1" required data-feedback="That chooses a priority based on an assumption. Ask about the student’s milestones and what is blocking progress."> <span>Start with the assignment. Written work always takes longest.</span></label>
-                <label><input type="radio" name="question-1" required data-feedback="A personal example can help briefly. Start by finding out what the student needs to prioritize."> <span>Tell me about all the systems I’ve used to manage multiple classes.</span></label>
-                <label><input type="radio" name="question-1" required data-correct data-feedback="The question gives the student a way to choose a priority based on their own goal."> <span>What’s your next milestone, and which of those tasks would help you move toward it?</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-1"> <span id="question-1-option-1">Start with the assignment. Written work always takes longest.</span> <span class="answer-feedback"><strong>No.</strong> That chooses a priority based on an assumption. Ask about the student’s milestones and what is blocking progress.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-2"> <span id="question-1-option-2">Tell me about all the systems I’ve used to manage multiple classes.</span> <span class="answer-feedback"><strong>No.</strong> A personal example can help briefly. Start by finding out what the student needs to prioritize.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-3"> <span id="question-1-option-3">What’s your next milestone, and which of those tasks would help you move toward it?</span> <span class="answer-feedback"><strong>Yes.</strong> The question gives the student a way to choose a priority based on their own goal.</span></label>
               </div>
             </fieldset>
-            <button type="submit">Check response</button>
-            <output aria-live="polite" aria-atomic="true"></output>
-          </form>
-          <form class="panel practice-question flow">
+          </div>
+          <div class="panel practice-question flow">
             <fieldset>
               <legend>The student chooses the practice quiz. What helps them turn that choice into a goal?</legend>
               <div class="choices">
-                <label><input type="radio" name="question-2" required data-correct data-feedback="The student defines the action, the timing, and what they’ll do with the result."> <span>What will you complete, by when, and how will you use the results?</span></label>
-                <label><input type="radio" name="question-2" required data-feedback="The encouragement leaves the target and the checkpoint unclear."> <span>Great, just keep studying until you feel ready.</span></label>
-                <label><input type="radio" name="question-2" required data-feedback="The plan assigns a deadline and workload before checking what the student can commit to."> <span>Do every practice quiz by tomorrow.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-1"> <span id="question-2-option-1">What will you complete, by when, and how will you use the results?</span> <span class="answer-feedback"><strong>Yes.</strong> The student defines the action, the timing, and what they’ll do with the result.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-2"> <span id="question-2-option-2">Great, just keep studying until you feel ready.</span> <span class="answer-feedback"><strong>No.</strong> The encouragement leaves the target and the checkpoint unclear.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-3"> <span id="question-2-option-3">Do every practice quiz by tomorrow.</span> <span class="answer-feedback"><strong>No.</strong> The plan assigns a deadline and workload before checking what the student can commit to.</span></label>
               </div>
             </fieldset>
-            <button type="submit">Check response</button>
-            <output aria-live="polite" aria-atomic="true"></output>
-          </form>
+          </div>
         </div>
       </section>
 
     </main>
   </div>
-  <script>
-    document.querySelectorAll('.practice-question').forEach(form => {
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        const choice = form.querySelector('input:checked');
-        if (!choice) return;
-        const output = form.querySelector('output');
-        const correct = choice.hasAttribute('data-correct');
-        output.dataset.result = correct ? 'correct' : 'review';
-        output.textContent = (correct ? 'That’s a strong coaching move. ' : 'Consider another response. ') + choice.dataset.feedback;
-      });
-      form.addEventListener('change', () => {
-        const output = form.querySelector('output');
-        output.textContent = '';
-        delete output.dataset.result;
-      });
-    });
-  </script>
 </body>
 </html>
