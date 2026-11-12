@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Management</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 1.5rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .exchange-reminder {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper a {
+      color: #002855;
+      font-weight: bold;
+      text-underline-offset: 0.15em;
+    }
+    #app-wrapper blockquote {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+    #app-wrapper .topic-card { display: block; text-decoration: none; }
+    #app-wrapper .topic-card p { color: #374151; font-weight: normal; }
+    #app-wrapper .topic-card:hover { border-color: #0070F0; }
+    #app-wrapper a:focus-visible, #app-wrapper input:focus-visible, #app-wrapper button:focus-visible {
+      outline: 3px solid #002855;
+      outline-offset: 4px;
+    }
+    #app-wrapper .practice { display: grid; gap: 1.5rem; }
+    #app-wrapper fieldset { margin: 0; min-width: 0; padding: 0; border: 0; }
+    #app-wrapper legend { padding: 0; color: #002855; font-weight: bold; }
+    #app-wrapper .choices { display: grid; gap: 0.5rem; margin-top: 0.65rem; }
+    #app-wrapper .choices label {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.5rem;
+      align-items: baseline;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    #app-wrapper input[type="radio"] { accent-color: #0070F0; margin: 0; }
+    #app-wrapper .answer-feedback {
+      display: none;
+      grid-column: 2;
+      padding: 0.6rem 0.75rem;
+      border-left: 3px solid #0070F0;
+      background: #F3F8FF;
+    }
+    #app-wrapper .choices input:checked ~ .answer-feedback { display: block; }
+    #app-wrapper .choices input:focus-visible + span { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Success Tools</div>
+        <h1>Time Management</h1>
+        <p>Help students plan coursework around the time and attention they realistically have.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="overview">
+        <h2 id="overview">About Time Management</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <p>Work, family, and other commitments can compete with study time. Even when students find a window to work, vague tasks, inaccurate time estimates, or interruptions can make it hard to use that time. Ask where the plan breaks down before choosing a tool.</p>
+          <div class="panel">
+            <h3>What You Might Hear</h3>
+            <ul>
+              <li>“I’m busy all day and still feel behind.”</li>
+              <li>“I sit down to work, but nothing gets done.”</li>
+              <li>“Everything feels urgent.”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="technique">
+        <h2 id="technique">Coaching Technique</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <h3>Look at a real week together</h3>
+          <p>Ask the student to describe a recent study attempt or open their calendar. Check how much time they actually have, what they planned to do, and what interrupted them. Choose a strategy that addresses where the plan breaks down.</p>
+          <aside class="callout">
+            <p><strong>What to watch for.</strong> Avoid prescribing your own study schedule or treating every time problem as a motivation problem. Keep the plan flexible enough for the student’s existing responsibilities.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section aria-labelledby="strategies">
+        <h2 id="strategies">Strategies to Try</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <article class="panel flow">
+            <h3>Time Blocking</h3>
+            <p>Pair a realistic window with one specific task. Have the student add the block to their calendar and name the task in the event title.</p>
+            <p><strong>Ask.</strong> “Which study window can you protect this week, and what will you work on during it?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Task Duration Estimation</h3>
+            <p>If tasks keep running long, have the student compare a new task with one they’ve completed. Ask them to estimate the time and decide what portion fits their next window.</p>
+            <p><strong>Ask.</strong> “How long did a similar task take? What part can you realistically finish in the time you have?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Distraction Planning</h3>
+            <p>Help the student identify a likely interruption and choose how to handle it. Ask what they need to stay available for and what can wait until the study block ends.</p>
+            <p><strong>Ask.</strong> “What’s likely to pull your attention away, and what will you do when it happens?”</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="example">
+        <h2 id="example">Coaching in Action</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="panel flow">
+          <p><strong>Student.</strong> “I keep putting ‘study’ on my calendar, but when the time comes, I don’t know what to work on.”</p>
+          <p><strong>Peer Navigator.</strong> “Which study window is most likely to work this week, and how long is it?”</p>
+          <p><strong>Student.</strong> “Wednesday after dinner. I have about 30 minutes.”</p>
+          <p><strong>Peer Navigator.</strong> “A time block can pair that window with a specific task. What course task could fit in those 30 minutes?”</p>
+          <p><strong>Student.</strong> “I can do the first five practice questions and mark the ones I want to review.”</p>
+          <p><strong>Peer Navigator.</strong> “Add that as the title of your Wednesday block. What could help you start when the block begins?”</p>
+          <p><strong>Student.</strong> “I added it. I’ll leave the practice questions open so I can go straight to them.”</p>
+        </div>
+        <div class="callout">
+          <p><strong>What the student did.</strong> The student applied Time Blocking in their own calendar by pairing a realistic study window with a specific task.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="practice">
+        <h2 id="practice">Practice the Next Move</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="practice">
+          <blockquote>A student says, “I blocked off an hour for coursework. I spent most of it switching between messages and the course page.”</blockquote>
+          <div class="panel practice-question flow">
+            <fieldset>
+              <legend>What would you explore before offering a strategy?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-1"> <span id="question-1-option-1">Can you study for two hours tomorrow to make up for it?</span> <span class="answer-feedback"><strong>No.</strong> Adding time leaves the interruptions in place.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-2"> <span id="question-1-option-2">Have you tried the exact schedule I use?</span> <span class="answer-feedback"><strong>No.</strong> Your schedule gives little information about the student’s interruptions or responsibilities.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-3"> <span id="question-1-option-3">What kinds of messages pulled you away, and which ones needed a response during that hour?</span> <span class="answer-feedback"><strong>Yes.</strong> This helps the student identify interruptions they can plan around and those they need to accommodate.</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="panel practice-question flow">
+            <fieldset>
+              <legend>You introduce Distraction Planning. What question turns the tip into action?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-1"> <span id="question-2-option-1">What’s one distraction you can plan for, and what will you do when it comes up in your next study block?</span> <span class="answer-feedback"><strong>Yes.</strong> The student chooses a specific adjustment and decides how to use it at the next opportunity.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-2"> <span id="question-2-option-2">Do you agree that phones can be distracting?</span> <span class="answer-feedback"><strong>No.</strong> Agreement alone leaves the next study block unchanged. Ask what the student will do when an interruption happens.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-3"> <span id="question-2-option-3">Can you turn off every notification whenever you study?</span> <span class="answer-feedback"><strong>No.</strong> This assumes all messages can wait. Let the student choose a plan that fits their responsibilities.</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
