@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outreach Calling</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul, #app-wrapper blockquote { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 3rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper li > ul { margin-top: 0.5rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .callout p + p { margin-top: 0.5rem; }
+    #app-wrapper .outreach-purpose {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper .section-grid { margin-top: 1.5rem; }
+    #app-wrapper blockquote {
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Week Three</div>
+        <h1>Outreach Calling</h1>
+        <p>Proactively connect with students and build meaningful support relationships</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="outreach-overview">
+        <h2 id="outreach-overview">Outreach Calling</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <div class="flow">
+            <p>Outreach calling, sometimes called <strong>care calling</strong>, is an opportunity to connect with students, build rapport, and offer support before they feel disengaged.</p>
+            <p>Students may be surprised by an outreach call because they didn’t schedule it. Keep the conversation supportive and low-pressure. Lead with curiosity and encouragement, and connect students to resources that can help.</p>
+          </div>
+          <div class="panel">
+            <h3>Goals of Outreach</h3>
+            <ul>
+              <li>Understand how the student is doing.</li>
+              <li>Identify possible barriers or challenges.</li>
+              <li>Connect the student to resources or strategies.</li>
+              <li>Encourage continued engagement with their course and support systems.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="outreach-purpose flow" aria-label="Purpose of outreach">
+          <p>The purpose of outreach is to provide proactive support, increase awareness of peer services, and offer bite-sized coaching.</p>
+          <p>The goal is <strong><em>not</em></strong> to turn the call into an appointment. Outreach calls are unscheduled and take place outside our scheduling system, so they don’t count as appointments in our data. Help students feel supported and encourage them to schedule an appointment or attend a live event, whichever fits their needs.</p>
+        </aside>
+      </section>
+
+      <section aria-labelledby="beginning-the-call">
+        <h2 id="beginning-the-call">Beginning the Call</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p>Place outreach calls through <strong>Genesys Cloud</strong> using the <strong>Outreach Call List</strong> on the appropriate course SharePoint site.</p>
+        <div class="two-columns section-grid">
+          <div class="panel flow">
+            <h3>If the Student Does Not Answer</h3>
+            <p>Leave a brief, professional voicemail and follow up by email.</p>
+            <blockquote>“Hi, this is [Name] from WGU. I’m going to send a follow-up email, and I hope we can reconnect another time. Thank you!”</blockquote>
+            <p><strong>Note:</strong> Unlike appointments, do not provide a call-back if the student does not answer the call the first time. Complete your documentation and move to the next student.</p>
+          </div>
+          <div class="panel flow">
+            <h3>If the Student Answers</h3>
+            <p>Introduce yourself, explain your role, and ask whether it’s a good time to talk.</p>
+            <blockquote>“Hi [Student Name]! This is [Your Name], and I’m a Peer Navigator at WGU. I was hoping we could chat for a few minutes. Is now a good time?”</blockquote>
+            <p>If now isn’t a good time, offer to follow up by email.</p>
+            <blockquote>“No problem! I’ll send a follow-up email in hopes that we can connect another time. Have a great day!”</blockquote>
+          </div>
+        </div>
+        <div class="callout flow">
+          <p><strong>Verify the student’s identity</strong> before discussing student information. Request their:</p>
+          <ul>
+            <li>First and last name</li>
+            <li>Program Mentor’s name</li>
+            <li>Student ID number, or their WGU username if they can’t access their student ID</li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="leading-the-conversation">
+        <h2 id="leading-the-conversation">Leading the Conversation</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <div class="flow">
+            <p>After verification, explain why you’re calling and ask how the student is doing in the course. Help them reflect on what’s challenging and identify what would help them continue.</p>
+            <p>Acknowledge that a course can feel challenging, then help the student identify a manageable next step.</p>
+          </div>
+          <div class="panel">
+            <h3>Example Questions</h3>
+            <ul>
+              <li>“How is [Course] going for you?”</li>
+              <li>“Is there anything in the course that’s been feeling challenging lately?”</li>
+              <li>“What’s been the hardest thing to juggle with school right now?”</li>
+              <li>“Has anything surprised you about how this course is going?”</li>
+              <li>“What kind of support would make the biggest difference for you this week?”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="connecting-to-support">
+        <h2 id="connecting-to-support">Connecting Students to Support</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p>Once you identify a challenge or concern, introduce a strategy, resource, or support service that may help the student move forward.</p>
+        <div class="two-columns section-grid">
+          <div class="panel">
+            <h3>Resources to Consider</h3>
+            <ul>
+              <li>Course resources or cohorts</li>
+              <li>Academic Coaching Center articles or services</li>
+              <li>Live events</li>
+              <li>Peer Navigator appointments</li>
+              <li>Program Mentors</li>
+              <li>Student Services</li>
+              <li>Student Wellbeing Services</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>What to Explain</h3>
+            <ul>
+              <li>What the resource is</li>
+              <li>How it may help with the student’s challenge</li>
+              <li>How the student can access it</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="callout">
+          <p><strong>Keep strategy discussions brief and approachable.</strong> Use the call to introduce support and encourage engagement. For more detailed practice or guidance, invite the student to a live event or help them schedule an appointment.</p>
+        </aside>
+      </section>
+
+      <section aria-labelledby="inviting-to-reconnect">
+        <h2 id="inviting-to-reconnect">Inviting Students to Reconnect</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <div class="panel flow">
+            <h3>For Appointment-Based Interns</h3>
+            <p>Encourage the student to schedule a session for individualized support.</p>
+            <blockquote>“I also offer Peer Navigator appointments where we can walk through study strategies, explore resources together, or even just check in as accountability partners for this course.”</blockquote>
+            <blockquote>“Would you be interested in scheduling time to reconnect?”</blockquote>
+            <p>If they’re interested, try to schedule the appointment during the call.</p>
+          </div>
+          <div class="panel flow">
+            <h3>For Live Event Interns</h3>
+            <p>Personally invite the student to an upcoming live event and explain how it could help with their goals or challenges.</p>
+            <blockquote>“My next live event is coming up on [Date and Time], and we’ll be talking about [Topic].”</blockquote>
+            <blockquote>“We’re going to focus on [Strategy] and how it can help make that section of the course easier to break down.”</blockquote>
+            <p>If they can’t attend, share a general appointment link or suggest other support options.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="closing-the-call">
+        <h2 id="closing-the-call">Closing the Call</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <div class="panel flow">
+            <h3>Check for Questions</h3>
+            <blockquote>“Before we wrap up, do you have any questions for me?”</blockquote>
+            <blockquote>“Is there anything else I can help support you with today?”</blockquote>
+          </div>
+          <div class="panel flow">
+            <h3>Thank the Student and Keep the Door Open</h3>
+            <blockquote>“Thank you so much for your time. It was really great talking with you.”</blockquote>
+            <blockquote>“If you need anything, feel free to reply to my email and we’ll make sure you get connected to the right resources.”</blockquote>
+          </div>
+        </div>
+        <div class="callout flow">
+          <p>Let the student know their <strong>follow-up email</strong> will include:</p>
+          <ul>
+            <li>Relevant resources</li>
+            <li>Scheduling links or live event information</li>
+            <li>Additional support information discussed during the call</li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="outreach-documentation">
+        <h2 id="outreach-documentation">Outreach Documentation and Procedures</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p>After each outreach interaction, complete the required documentation and follow-up tasks.</p>
+        <div class="two-columns section-grid">
+          <div class="panel">
+            <h3>After Each Outreach Interaction</h3>
+            <ul>
+              <li>Update the <strong>Outreach Call List</strong> as needed.</li>
+              <li>Send the follow-up email and <strong>BCC your Supervisor and Manager</strong>.</li>
+              <li>Complete the <strong>Outreach-Specific Student Note Form</strong>.</li>
+              <li>Track the outreach interaction on the <strong>Interaction Data Form</strong>.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Follow-Up Email Expectations</h3>
+            <ul>
+              <li>Personalize the email with the student note, course code, and other relevant details as needed.</li>
+              <li>Use professional formatting in <strong>Arial, size 14</strong>.</li>
+              <li>Follow the team’s email expectations.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="callout">
+          <p><strong>Interaction Data reminder.</strong> Log outreach interactions as <strong>Outreach Call</strong> and <strong>FLUP Email</strong>, as applicable. Use <strong>Email Exchanges</strong> only for transactional back-and-forth email communication with students.</p>
+        </aside>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
