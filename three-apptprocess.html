@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peer Navigator Appointments</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul, #app-wrapper blockquote { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 2rem; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    #app-wrapper .banner-links a {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+    #app-wrapper .banner-links a:first-child { background: #97E152; color: #002855; }
+    #app-wrapper .banner-links a:first-child:hover { transform: scale(1.05); }
+    #app-wrapper .banner-links a:last-child { color: #FFFFFF; border: 2px solid #FFFFFF; }
+    #app-wrapper .banner-links a:last-child:hover { background: #FFFFFF; color: #002855; }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 3rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper .with-video { align-items: center; }
+    #app-wrapper .video-panel {
+      min-width: 0;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .video-placeholder {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 16 / 9;
+      padding: 1rem;
+      border: 1px dashed #0070F0;
+      border-radius: 0.75rem;
+      background: #FFFFFF;
+      color: #002855;
+      text-align: center;
+    }
+    #app-wrapper .video-panel > iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 0.75rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper li > ul { margin-top: 0.5rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .callout p + p { margin-top: 0.5rem; }
+    #app-wrapper .outcome {
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+      scroll-margin-top: 1rem;
+    }
+    #app-wrapper .outcome h3 { margin-bottom: 1rem; }
+    #app-wrapper .outcome .outcome-label { margin-bottom: 0.35rem; color: #002855; font-weight: bold; }
+    #app-wrapper blockquote {
+      margin-top: 0.6rem;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    #app-wrapper .next-step { margin-top: 1.25rem; }
+    #app-wrapper .next-step a { color: #002855; font-weight: bold; }
+    #app-wrapper a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+      #app-wrapper .banner-content > :nth-child(4) { animation-delay: 0.4s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Appointment Training</div>
+        <h1>Peer Navigator Appointments</h1>
+        <p>Prepare for an appointment, place a call in Genesys, and follow the steps for each call outcome.</p>
+        <nav class="banner-links" aria-label="Appointment guide shortcuts">
+          <a href="#before-appointment">Before the Appointment</a>
+          <a href="#placing-a-call">Placing a Call in Genesys</a>
+        </nav>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section id="genesys-sign-in" class="two-columns with-video" aria-labelledby="sign-in-title">
+        <div>
+          <h2 id="sign-in-title">Signing into Genesys for the First Time</h2>
+          <div class="section-divider" aria-hidden="true"></div>
+          <ul>
+            <li>Select <strong>More Login Options</strong>.</li>
+            <li>Enter <strong>westerngovernorsuniversity</strong> as your organization and click next</li>
+            <li>Open <strong>Sign in using your PingID SSO.</li>
+          </ul>
+        </div>
+        <div class="video-panel">
+          <div style="position: relative; width: 100%; height: 0; padding-top: 62.5000%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAHatXj0MLQ/cGYoksyuhFLU4u7Pxy86fQ/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+        </div>
+      </section>
+
+      <section id="before-appointment" aria-labelledby="before-title">
+        <h2 id="before-title">Before the Appointment</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <ul>
+          <li>Send the <strong>Peer Navigator Appointment Confirmation</strong> email.</li>
+          <li>Review the appointment details on your Outlook calendar.</li>
+          <li>Look up the student in the <strong>Call Verification Dashboard</strong> and keep it open before placing the call.</li>
+          <li>Use your <strong>WGU-issued Jabra headset</strong> during appointments. This is required.</li>
+          <li>Open and lock your personal Webex room so the next student can’t join the current appointment early.</li>
+        </ul>
+        <aside class="callout"><p><strong>Tip.</strong> Use the dial pad to test your audio.</p></aside>
+      </section>
+
+      <section id="placing-a-call" aria-labelledby="call-title">
+        <div class="two-columns with-video">
+          <div>
+            <h2 id="call-title">Placing a Call in Genesys</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+            <ol>
+              <li>In the left menu, click <strong>Workspace</strong>, then <strong>Agent Workspace</strong>.</li>
+              <li>Find the arrow pointing toward the mail icon next to the left menu. Click the phone icon to the left of the mail icon to <strong>Start a new call</strong>.</li>
+              <li>Select your school’s queue to call on its behalf.</li>
+              <li>Enter the student’s phone number and press the green call button.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+            <!-- Replace the placeholder below with the full Canva video embed code. -->
+            <div class="video-placeholder"><p>Placing a call in Genesys video</p></div>
+          </div>
+        </div>
+        <aside class="callout">
+          <p><strong>Important.</strong> Always call through your school’s queue so Genesys records the call.</p>
+          <p>Skip the <strong>Go on Queue</strong> button and the call button on the right side of the screen. Those controls skip the queue selection prompt.</p>
+        </aside>
+      </section>
+
+      <section aria-labelledby="outcomes-title">
+        <h2 id="outcomes-title">Call Outcomes</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <article class="outcome" aria-labelledby="missed-title">
+            <p class="outcome-label">Student Doesn’t Answer</p>
+            <h3 id="missed-title">Missed Call/No Student Process</h3>
+            <ol>
+              <li>
+                Leave a FERPA-compliant voicemail letting the student know you’ll call back in 5 minutes.
+                <blockquote>“Hi ___! This is ___ from WGU. I will send an email to your account and call back in 5 minutes. Hope to hear from you soon!”</blockquote>
+              </li>
+              <li>Send the <strong>WGU Peer Navigator - Just Called</strong> email.</li>
+              <li>Wait <strong>5 minutes</strong> and call back. If the student answers, follow the <a href="#student-answers">appointment process</a>.</li>
+              <li>
+                If the student misses the second call, leave another FERPA-compliant voicemail and send the <strong>WGU Peer Navigator - Missed Appointment</strong> email.
+                <blockquote>“Hi ___! This is ___ from WGU. I will send an email to your account. I hope we can connect another time!”</blockquote>
+              </li>
+              <li>Document the attempt in the <strong>Student Note Form</strong> and categorize the appointment as <strong>No Student (red)</strong> on your calendar.</li>
+            </ol>
+          </article>
+
+          <article id="student-answers" class="outcome" aria-labelledby="answered-title">
+            <p class="outcome-label">Student Answers</p>
+            <h3 id="answered-title">Appointment Process</h3>
+            <ol>
+              <li>
+                Greet the student and verify their identity using three points of identification.
+                <ul>
+                  <li>First and last name</li>
+                  <li>Program Mentor’s name. If the student has no assigned Program Mentor, use their Enrollment Counselor’s name.</li>
+                  <li>Student ID. If it’s unavailable, you can accept their username.</li>
+                </ul>
+              </li>
+              <li>Work through the <strong>AFFIRM</strong> model based on the student’s needs.</li>
+              <li>Share your screen in Webex on every call except accountability calls.</li>
+              <li>On every call, facilitate strategy practice, demonstrate how to access resources, or do both. Use only strategies and resources from the <strong>Peer Navigator Toolbox</strong> or approved course or WGU resources.</li>
+              <li>If you have the next time slot free, you may offer to extend the appointment. If the student agrees, pause briefly and use the scheduling link to book them into the next available slot.</li>
+              <li>At the end of the call, encourage the student to schedule a follow-up while they’re still on the line. Ask them to complete the survey in the post-appointment email.</li>
+            </ol>
+            <p class="next-step"><a href="#after-appointment">After the Appointment &rarr;</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="after-appointment" aria-labelledby="after-title">
+        <h2 id="after-title">After the Appointment</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <ol>
+          <li>
+            Complete and submit the <strong>Student Note Form</strong> on the <strong>same day as the appointment</strong>. Follow all note etiquette guidelines.
+            <ul>
+              <li>Use course code <strong>ORA1</strong> for new students in Orientation.</li>
+              <li>Use <strong>N/A</strong> only when absolutely necessary.</li>
+            </ul>
+          </li>
+          <li>Complete and send the <strong>Post-Appointment Summary</strong> email.</li>
+          <li>Categorize the appointment as <strong>Coaching (gold)</strong> on your calendar.</li>
+        </ol>
+        <aside class="callout"><p><strong>Interaction Data reminder.</strong> Exclude routine emails, such as pre- and post-appointment emails, from email exchanges in the Interaction Data log.</p></aside>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
