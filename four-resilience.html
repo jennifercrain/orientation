@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resilience</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 1.5rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .exchange-reminder {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper a {
+      color: #002855;
+      font-weight: bold;
+      text-underline-offset: 0.15em;
+    }
+    #app-wrapper blockquote {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+    #app-wrapper .topic-card { display: block; text-decoration: none; }
+    #app-wrapper .topic-card p { color: #374151; font-weight: normal; }
+    #app-wrapper .topic-card:hover { border-color: #0070F0; }
+    #app-wrapper a:focus-visible, #app-wrapper input:focus-visible, #app-wrapper button:focus-visible {
+      outline: 3px solid #002855;
+      outline-offset: 4px;
+    }
+    #app-wrapper .practice { display: grid; gap: 1.5rem; }
+    #app-wrapper fieldset { margin: 0; min-width: 0; padding: 0; border: 0; }
+    #app-wrapper legend { padding: 0; color: #002855; font-weight: bold; }
+    #app-wrapper .choices { display: grid; gap: 0.5rem; margin-top: 0.65rem; }
+    #app-wrapper .choices label {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.5rem;
+      align-items: baseline;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    #app-wrapper input[type="radio"] { accent-color: #0070F0; margin: 0; }
+    #app-wrapper .answer-feedback {
+      display: none;
+      grid-column: 2;
+      padding: 0.6rem 0.75rem;
+      border-left: 3px solid #0070F0;
+      background: #F3F8FF;
+    }
+    #app-wrapper .choices input:checked ~ .answer-feedback { display: block; }
+    #app-wrapper .choices input:focus-visible + span { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Success Tools</div>
+        <h1>Resilience</h1>
+        <p>Help students restart after a setback and adapt their plan to what they can do now.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="overview">
+        <h2 id="overview">About Resilience</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <p>A missed deadline, an unsuccessful assessment attempt, or a break in coursework can interrupt a student’s momentum. Resilience coaching gives the student room to acknowledge what happened, identify what helped them recover before, and choose a realistic way back into the course.</p>
+          <div class="panel">
+            <h3>What You Might Hear</h3>
+            <ul>
+              <li>“I fell off track and don’t know how to get back.”</li>
+              <li>“I failed my OA, so I’m probably too far behind now.”</li>
+              <li>“One bad week turns into no progress at all.”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="technique">
+        <h2 id="technique">Coaching Technique</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <h3>Find a realistic point of re-entry</h3>
+          <p>Ask where the student left off, what has changed, and what is available to them now. Acknowledge the disruption and give the student room to choose a way back into coursework that fits their circumstances.</p>
+          <aside class="callout">
+            <p><strong>What to watch for.</strong> Avoid minimizing the setback or pushing the student to make up everything at once. Stay within the Peer Navigator role when discussing assessment results and course requirements. Help the student identify who can clarify requirements when they need that information.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section aria-labelledby="strategies">
+        <h2 id="strategies">Strategies to Try</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <article class="panel flow">
+            <h3>Setback Recovery</h3>
+            <p>After a disappointment, help the student describe what happened without judgment. Use any feedback or information they have to identify one realistic action and decide when to try it.</p>
+            <p><strong>Ask.</strong> “What does the feedback point you toward? Which part could you revisit first?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Return-from-Break Planning</h3>
+            <p>When the student has been away from the course, open it together and find where they left off. Have them choose a small re-entry task, such as reviewing their last page of notes, and decide when to begin.</p>
+            <p><strong>Ask.</strong> “Where did you stop, and what’s one small step that would help you pick it back up?”</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="example">
+        <h2 id="example">Coaching in Action</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="panel flow">
+          <p><strong>Student.</strong> “I haven’t touched the course in a week. I feel like I have to start from scratch.”</p>
+          <p><strong>Peer Navigator.</strong> “A week away can make it hard to know where to pick up. Where were you when you stopped?”</p>
+          <p><strong>Student.</strong> “I was halfway through Unit 2. I have notes, but I’m not sure what I remember.”</p>
+          <p><strong>Peer Navigator.</strong> “What would be a low-pressure way to see what’s still familiar?”</p>
+          <p><strong>Student.</strong> “I can skim my Unit 2 notes and mark anything I don’t remember.”</p>
+          <p><strong>Peer Navigator.</strong> “Let’s open them and try that with the first page. What would tell you where to pick up next?”</p>
+          <p><strong>Student.</strong> “I recognize the first two examples. I marked the third one, so I’ll start there tomorrow.”</p>
+        </div>
+        <div class="callout">
+          <p><strong>What the student did.</strong> The student practiced restarting with work they had already done and used that review to identify where to continue.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="practice">
+        <h2 id="practice">Practice the Next Move</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="practice">
+          <blockquote>A student says, “I didn’t pass my OA. I haven’t opened the course since.”</blockquote>
+          <div class="panel practice-question flow">
+            <fieldset>
+              <legend>What would you say first?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-1"> <span id="question-1-option-1">That sounds discouraging. What has felt hardest about coming back to the course since the attempt?</span> <span class="answer-feedback"><strong>Yes.</strong> This acknowledges the setback and checks what’s making it hard to return.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-2"> <span id="question-1-option-2">Everybody fails sometimes. You’ll pass next time.</span> <span class="answer-feedback"><strong>No.</strong> This skips over what the setback means to the student and promises an outcome you can’t know.</span></label>
+                <label><input type="radio" name="question-1" aria-labelledby="question-1-option-3"> <span id="question-1-option-3">You should restart the entire course today.</span> <span class="answer-feedback"><strong>No.</strong> This assumes that starting over is necessary and may make re-entry feel harder.</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="panel practice-question flow">
+            <fieldset>
+              <legend>The student says they don’t know where to restart. How could you help them create an action?</legend>
+              <div class="choices">
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-1"> <span id="question-2-option-1">Ask whether they feel better now that they’ve talked about it.</span> <span class="answer-feedback"><strong>No.</strong> Checking how they feel can be useful. Also help them decide what they can do next.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-2"> <span id="question-2-option-2">Ask them to open any feedback they’ve received, identify one area to revisit, and name when they’ll begin.</span> <span class="answer-feedback"><strong>Yes.</strong> The student uses information they have to choose a manageable restart step.</span></label>
+                <label><input type="radio" name="question-2" aria-labelledby="question-2-option-3"> <span id="question-2-option-3">Pick a topic for them and say to keep working until they’re ready.</span> <span class="answer-feedback"><strong>No.</strong> The student needs a step they understand and can realistically carry out.</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
