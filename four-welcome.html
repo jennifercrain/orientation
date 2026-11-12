@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Week Four</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      color: #000000;
+      background: #FFFFFF;
+      font-size: 18px !important;
+      line-height: 1.55;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3,
+    #app-wrapper p, #app-wrapper ul { margin: 0; }
+    #app-wrapper :is(p, li, .banner-label) { font-size: 18px !important; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2; color: #002855; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25; color: #002855; }
+    #app-wrapper strong { color: #0070F0; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #002855, #0070F0);
+      color: #FFFFFF;
+      text-align: center;
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.05; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding: 5rem 1.5rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.95); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main { max-width: 72rem; padding: 0 1.5rem 2rem; margin: 0 auto; }
+    #app-wrapper main > section { padding-block: 0.75rem; }
+    #app-wrapper .section-heading { text-align: center; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 3px;
+      margin: 0.75rem auto 1.25rem;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+    }
+    #app-wrapper .content { max-width: 48rem; margin-inline: auto; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper .panel {
+      padding: 1.5rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 1rem;
+      background: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 40, 85, 0.1);
+    }
+    #app-wrapper .weekly-plan { border-left-color: #46B1EF; }
+    #app-wrapper .weekly-plan h3 + p { margin-top: 0.35rem; }
+    #app-wrapper .success { border-left-color: #97E152; }
+    #app-wrapper .success ul { padding-left: 1.4rem; }
+    #app-wrapper .success li + li { margin-top: 0.6rem; }
+    #app-wrapper .success li::marker { color: #002855; }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="week-four-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
+              <circle cx="40" cy="40" r="1" fill="#FFFFFF"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#week-four-pattern)"/>
+        </svg>
+      </div>
+      <div class="banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Week Four</div>
+        <h1>Welcome to Week Four</h1>
+        <p>Put your coaching skills into practice and prepare to support students across the Peer Navigator role.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF"/>
+      </svg>
+    </header>
+
+    <main>
+      <section aria-labelledby="overview">
+        <h2 class="section-heading" id="overview">Overview</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="content flow">
+          <p>This week, you’ll bring together what you’ve learned in a <strong>course material mock session</strong>. You’ll also learn how to support students outside appointments and live events and practice using <strong>Success Tools</strong> to help students take a manageable next step.</p>
+          <p>Set aside focused time to complete each page and activity in this module.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="why-it-matters">
+        <h2 class="section-heading" id="why-it-matters">Why This Matters</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="content panel flow">
+          <h3>Support students during and between sessions</h3>
+          <p>The mock session gives you a chance to practice coaching with the course material you’ll use in your role. Support Activities give you ways to stay connected with students between sessions, including following up by email and engaging in course communities. Success Tools help you work with students on barriers such as finding time to study, getting started, or recovering after a setback.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="how-it-works">
+        <h2 class="section-heading" id="how-it-works">How This Week Works</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="content panel weekly-plan flow">
+          <article>
+            <h3>Complete Your Course Material Mock Session</h3>
+            <p>Prepare for your assigned topic and practice using course material and coaching strategies in the appointment or live event format assigned to you.</p>
+          </article>
+          <article>
+            <h3>Learn How to Provide Direct Student Support</h3>
+            <p>Explore the Support Activities you’ll complete outside appointments and live events. Learn how to follow up through <strong>Email Exchanges</strong> and support students through <strong>Community Support</strong> in WGU Connect.</p>
+          </article>
+          <article>
+            <h3>Practice Using Success Tools</h3>
+            <p>Explore burnout and motivation, goal setting, mindset, resilience, and time management. Practice asking questions that help students identify what’s getting in the way and decide how they’ll apply a strategy.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="success">
+        <h2 class="section-heading" id="success">What Success Looks Like This Week</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="content panel success flow">
+          <h3>By the end of this week, you can</h3>
+          <ul>
+            <li>Use course material and coaching strategies in your assigned mock session.</li>
+            <li>Understand Support Activity expectations and options.</li>
+            <li>Provide coaching support with Success Tools based on what the student shares and help them identify how they’ll use it.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
