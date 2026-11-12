@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success Tools</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 1.5rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .exchange-reminder {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper a {
+      color: #002855;
+      font-weight: bold;
+      text-underline-offset: 0.15em;
+    }
+    #app-wrapper blockquote {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+    #app-wrapper .topic-card { display: block; text-decoration: none; }
+    #app-wrapper .topic-card p { color: #374151; font-weight: normal; }
+    #app-wrapper .topic-card:hover { border-color: #0070F0; }
+    #app-wrapper a:focus-visible, #app-wrapper input:focus-visible, #app-wrapper button:focus-visible {
+      outline: 3px solid #002855;
+      outline-offset: 4px;
+    }
+    #app-wrapper .practice {
+      border: 0;
+      border-left: 6px solid #97E152;
+      border-radius: 0.5rem;
+    }
+    #app-wrapper fieldset { margin: 0; min-width: 0; padding: 0; border: 0; }
+    #app-wrapper legend { padding: 0; color: #002855; font-weight: bold; }
+    #app-wrapper .choices { display: grid; gap: 0.5rem; margin-top: 0.65rem; }
+    #app-wrapper .choices label {
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    #app-wrapper input[type="radio"] { accent-color: #0070F0; flex-shrink: 0; }
+    #app-wrapper .practice button {
+      padding: 0.6rem 1rem;
+      border: 0;
+      border-radius: 0.5rem;
+      background: #0070F0;
+      color: #FFFFFF;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #app-wrapper .practice button:hover { background: #002855; }
+    #app-wrapper .practice output:not(:empty) {
+      display: block;
+      padding: 0.65rem 0.8rem;
+      border-left: 3px solid #0070F0;
+      background: #F3F8FF;
+    }
+    #app-wrapper .practice output[data-result="correct"] { border-color: #97E152; }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Peer Navigator Training</div>
+        <h1>Success Tools</h1>
+        <p>Help students identify what’s getting in the way and take a next step they can use.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="coaching-approach">
+        <h2 id="coaching-approach">Coaching With Success Tools</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <p>Success Tools help students work through common barriers to academic progress, such as low motivation, unclear goals, setbacks, and competing demands. Start by listening to how the student describes the situation. Ask a focused question that helps both of you understand what’s getting in the way.</p>
+          <p>You can offer a strategy or share a practical tip. <strong>Make it coaching by helping the student put the idea into action.</strong> Ask how they’d apply it, what they’d change to make it fit, and what they’ll do first. When possible, have them try that first step during the conversation.</p>
+          <div class="callout flow">
+            <p><strong>Example.</strong> After introducing time blocking, ask “Where could you realistically fit a study block this week?” and “What will you work on during that block?” Then invite the student to add it to their calendar using the task as the title.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="expectations">
+        <h2 id="expectations">Coaching Expectations</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <article class="panel flow">
+            <h3>Explore before giving advice</h3>
+            <p>Ask what the student has already tried and what happened. After offering a tip, ask how they’d apply it and help them identify a specific next action.</p>
+          </article>
+          <article class="panel flow">
+            <h3>Stay within your role</h3>
+            <p>Do not diagnose or label students. Reflect what they describe in their own words, and keep the conversation focused on coursework and support within the Peer Navigator role.</p>
+          </article>
+          <article class="panel flow">
+            <h3>Check your assumptions</h3>
+            <p>Ask what the student means before deciding what’s causing the problem. “When you say you can’t get started, what happens when you sit down to study?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Keep the focus on the student</h3>
+            <p>Share a brief personal example when it helps. Then return to the student’s experience. “What part of that, if any, could work for you?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Make encouragement specific</h3>
+            <p>Avoid shallow reassurance or cheerleading. Name an effort or a strength the student has shown, then ask how they could build on it. “Short study sessions helped you finish the last unit. What could you reuse here?”</p>
+          </article>
+          <article class="panel flow">
+            <h3>Be warm and professional</h3>
+            <p>Use respectful language and take the concern seriously. Avoid jokes or comments that minimize what the student shares. Give the student time to respond in their own words.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="topics">
+        <h2 id="topics">Explore the Topics</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <p>“I don’t know where to start” could reflect unclear priorities, low energy, or uncertainty after a setback. Ask what happens when the student tries to start, then choose a topic based on what they share.</p>
+          <div class="two-columns">
+            <a class="panel topic-card" href="Burnout_and_Motivation_Preview.html">
+              <h3>Burnout &amp; Motivation</h3>
+              <p>“I know what I need to do. I just can’t make myself start.”</p>
+            </a>
+            <a class="panel topic-card" href="Goal_Setting_Preview.html">
+              <h3>Goal Setting</h3>
+              <p>“I’m working, but I don’t feel like I’m making progress.”</p>
+            </a>
+            <a class="panel topic-card" href="Mindset_Preview.html">
+              <h3>Mindset</h3>
+              <p>“I’m just not good at this.”</p>
+            </a>
+            <a class="panel topic-card" href="Resilience_Preview.html">
+              <h3>Resilience</h3>
+              <p>“I fell off track and don’t know how to get back.”</p>
+            </a>
+            <a class="panel topic-card" href="Time_Management_Preview.html">
+              <h3>Time Management</h3>
+              <p>“I’m busy all day and still feel behind.”</p>
+            </a>
+          </div>
+          <p>For approved resources, additional strategies, and coaching questions, open <strong>Success Tools</strong> in the <strong>Strategy Toolbox</strong>.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
