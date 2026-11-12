@@ -44,19 +44,7 @@
       font-weight: 500;
     }
     #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
-    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 2rem; color: rgba(255, 255, 255, 0.9); }
-    #app-wrapper .banner-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
-    #app-wrapper .banner-links a {
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.2s, background 0.2s, color 0.2s;
-    }
-    #app-wrapper .banner-links a:first-child { background: #97E152; color: #002855; }
-    #app-wrapper .banner-links a:first-child:hover { transform: scale(1.05); }
-    #app-wrapper .banner-links a:last-child { color: #FFFFFF; border: 2px solid #FFFFFF; }
-    #app-wrapper .banner-links a:last-child:hover { background: #FFFFFF; color: #002855; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
     #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
     #app-wrapper main > section { padding-block: 3rem; scroll-margin-top: 1rem; }
     #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
@@ -124,7 +112,6 @@
       #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
       #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
       #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
-      #app-wrapper .banner-content > :nth-child(4) { animation-delay: 0.4s; }
     }
     @keyframes banner-pulse { 50% { opacity: 0.5; } }
     @keyframes banner-fade-in {
@@ -158,10 +145,6 @@
         <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Appointment Training</div>
         <h1>Peer Navigator Appointments</h1>
         <p>Prepare for an appointment, place a call in Genesys, and follow the steps for each call outcome.</p>
-        <nav class="banner-links" aria-label="Appointment guide shortcuts">
-          <a href="#before-appointment">Before the Appointment</a>
-          <a href="#placing-a-call">Placing a Call in Genesys</a>
-        </nav>
       </div>
       <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
@@ -176,7 +159,7 @@
           <ul>
             <li>Select <strong>More Login Options</strong>.</li>
             <li>Enter <strong>westerngovernorsuniversity</strong> as your organization and click next</li>
-            <li>Sign in using your <strong>PingID SSO.></strong></li>
+            <li>Sign in using your <strong>PingID SSO.</strong></li>
           </ul>
         </div>
         <div class="video-panel">
