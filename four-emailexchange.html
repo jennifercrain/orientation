@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Exchanges</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 3rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .exchange-reminder {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper a {
+      color: #002855;
+      font-weight: bold;
+      text-underline-offset: 0.15em;
+    }
+    #app-wrapper a:focus-visible { outline: 3px solid #002855; outline-offset: 4px; }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Week 4</div>
+        <h1>Email Exchanges</h1>
+        <p>Follow up with students from previous appointments and live events to offer support and encouragement.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="email-exchanges">
+        <h2 id="email-exchanges">Email Exchanges</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <p>Use your Support Activity block to email students from previous appointments or live events and offer support and encouragement.</p>
+          <p>Use or adapt the <a href="https://westerngovernorsuniversity.sharepoint.com/:w:/r/sites/SILeaderTeamSpace/_layouts/15/doc.aspx?sourcedoc=%7B646ddadf-4327-440b-bdec-4d614e217ae3%7D&amp;action=edit&amp;web=1">email templates</a> when writing your follow-up.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="calendaring">
+        <h2 id="calendaring">Calendaring</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p>Right-click and update your Support Activity block in Outlook. Select <strong>This event</strong> to edit only that occurrence after you have completed the activity. Then, rename it <strong>Support Activity - Student Touchpoints</strong>.</p>
+      </section>
+
+      <section aria-labelledby="who-to-contact">
+        <h2 id="who-to-contact">Who to Contact</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <div class="panel flow">
+            <h3>Appointment Interns</h3>
+            <ul>
+              <li>Students you met with in a previous appointment, ideally two weeks ago or more.</li>
+              <li>Students who missed or canceled an appointment.</li>
+            </ul>
+            <aside class="callout">
+              <p><strong>Where to look.</strong> Review your Outlook calendar for students who previously scheduled with you or whose appointments you marked as missed.</p>
+            </aside>
+          </div>
+          <div class="panel flow">
+            <h3>Live Event Interns</h3>
+            <ul>
+              <li>Students who recently attended your live events. Use the <strong>Webex attendance report</strong> to identify them.</li>
+              <li>Students who registered for your live events and did not attend.</li>
+            </ul>
+            <aside class="callout">
+              <p><strong>Where to look.</strong> On the <strong>Support Activity</strong> page, expand the section for your school. The Excel lists show students who registered for your session and did not attend, as well as students who attended sessions the previous week. The Events Supervisor updates the lists every Monday.</p>
+            </aside>
+          </div>
+        </div>
+
+        <aside class="exchange-reminder flow" aria-labelledby="when-to-log">
+          <h3 id="when-to-log">When to Log an Email Exchange</h3>
+          <p>Log an Email Exchange once both you and the student have participated. If you send multiple emails before the student replies, count the completed exchange once.</p>
+        </aside>
+      </section>
+
+      <section aria-labelledby="interaction-data">
+        <h2 id="interaction-data">Interaction Data</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <p>On the <strong>Interaction Data Form</strong>, enter <strong>1</strong> for each completed Email Exchange.</p>
+          <ul>
+            <li><strong>You initiate the exchange.</strong> You email the student and they reply. Log <strong>1</strong>.</li>
+            <li><strong>The student initiates the exchange.</strong> The student emails you and you reply. Log <strong>1</strong>.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
