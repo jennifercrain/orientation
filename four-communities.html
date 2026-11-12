@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Support</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 1.5rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .exchange-reminder {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .panel {
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid #F3F4F6;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px rgba(0, 40, 85, 0.08);
+    }
+    #app-wrapper .panel h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .flow > * + * { margin-top: 0.9rem; }
+    #app-wrapper a {
+      color: #002855;
+      font-weight: bold;
+      text-underline-offset: 0.15em;
+    }
+    #app-wrapper .sandbox-button-row { text-align: center; }
+    #app-wrapper .sandbox-button {
+      display: inline-block;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      background: #0070F0;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    #app-wrapper .sandbox-button:hover { background: #002855; }
+    #app-wrapper .sandbox-button:focus-visible { outline: 3px solid #002855; outline-offset: 4px; }
+    #app-wrapper blockquote {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid #0070F0;
+      background: rgba(0, 112, 240, 0.05);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+    #cta-simulation h4 { margin: 0; color: #002855; }
+    #cta-simulation [data-cta-preview] {
+      padding: 0.65rem;
+      border-left: 3px solid #0070F0;
+      background: #FFFFFF;
+      color: #002855;
+    }
+    #cta-simulation .cta-options { display: grid; gap: 0.55rem; }
+    #cta-simulation button {
+      padding: 0.65rem 0.85rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 0.65rem;
+      background: #F8FAFC;
+      color: #002855;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    #cta-simulation button:enabled:hover { border-color: #0070F0; }
+    #cta-simulation button:focus-visible { outline: 3px solid #002855; outline-offset: 3px; }
+    #cta-simulation button:disabled { cursor: default; }
+    #cta-simulation .cta-feedback { padding: 0.75rem; border: 1px solid; border-radius: 0.65rem; }
+    #cta-simulation .cta-best { background: #F0F9E8; border-color: #649C32; color: #28471A; }
+    #cta-simulation .cta-incorrect { background: #FFF3F1; border-color: #C77A74; color: #822C29; }
+    #cta-simulation .cta-reset { background: #0070F0; color: #FFFFFF; border-color: #0070F0; }
+    #cta-simulation .cta-reset:hover { background: #002855; }
+    #app-wrapper #post-analysis,
+    #app-wrapper #cta-simulation {
+      border: 0;
+      border-left: 6px solid #97E152;
+      border-radius: 0.5rem;
+    }
+    #post-analysis h4 { margin: 0; color: #002855; }
+    #post-analysis .post-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    #post-analysis button {
+      padding: 0.6rem 0.9rem;
+      border: 1px solid #0070F0;
+      border-radius: 0.65rem;
+      background: #FFFFFF;
+      color: #002855;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #post-analysis button[aria-pressed="true"], #post-analysis [data-example-check] { background: #0070F0; color: #FFFFFF; }
+    #post-analysis button:focus-visible, #post-analysis input:focus-visible { outline: 3px solid #002855; outline-offset: 3px; }
+    #post-analysis article { align-self: start; border-left: 3px solid #0070F0; }
+    #post-analysis fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+    #post-analysis legend { margin-bottom: 0.5rem; padding: 0; font-weight: bold; color: #002855; }
+    #post-analysis label { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.55rem; border-radius: 0.5rem; }
+    #post-analysis label[data-result="correct"] { background: #F0F9E8; color: #28471A; }
+    #post-analysis label[data-result="missed"] { background: #FFF4DA; color: #72430B; }
+    #post-analysis label[data-result="incorrect"] { background: #FFF3F1; color: #822C29; }
+    #post-analysis label[data-result="correct"]::after { content: "Correct"; font-weight: bold; }
+    #post-analysis label[data-result="missed"]::after { content: "Missed"; font-weight: bold; }
+    #post-analysis label[data-result="incorrect"]::after { content: "Incorrect"; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Week 4</div>
+        <h1>Community Support</h1>
+        <p>Help students connect, share what works, and support one another in WGU Connect.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="community-support">
+        <h2 id="community-support">Community Support</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <p>You’ll be assigned at least one WGU Connect course community to moderate. Community support is a recurring responsibility, and consistent, high-quality engagement is required each week.</p>
+          <p>Complete at least <strong>two engagements per assigned course community each week</strong>. You can write one main post and one reply, or two replies.</p>
+        </div>
+        <aside class="callout">
+          <p><strong>Note.</strong> You may support a course community even if you don’t offer appointments or lead live events for that course.</p>
+        </aside>
+      </section>
+
+      <section aria-labelledby="calendaring">
+        <h2 id="calendaring">Calendaring</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <p>Keep a recurring <strong>30-minute Support Activity - Communities</strong> block on your calendar each week.</p>
+          <p>In an especially active community, you may use additional Support Activity time. After completing the activity, right-click an unused Support Activity block in Outlook and select <strong>This event</strong> to edit just that occurrence. Rename it <strong>Support Activity - Communities</strong>.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="best-practices">
+        <h2 id="best-practices">Best Practices for WGU Connect</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns">
+          <div class="panel flow">
+            <h3>Build a Predictable Rhythm</h3>
+            <p>Set a regular time to check in, respond, and plan posts. A consistent rhythm helps students know when to look for new discussions and gives them more chances to respond to one another.</p>
+            <p>Depending on how many courses you support, you may spend up to <strong>1.5 hours per week</strong> across your communities. When you have a topic that invites discussion, a main post and a reply are a useful weekly mix.</p>
+          </div>
+          <div class="panel flow">
+            <h3>Vary What You Post</h3>
+            <ul>
+              <li>Open-ended questions or polls</li>
+              <li>Motivational quotes or memes</li>
+              <li>Progress celebrations, such as “What did you tackle this week?”</li>
+              <li>Study tips, time management strategies, and connections to careers or everyday life</li>
+              <li>Light topics such as seasonal activities, sports, or hobbies</li>
+            </ul>
+            <p>Try a short series, such as a <strong>Motivation Monday</strong> prompt for four weeks, or a deeper discussion every two weeks or once a month. Watch which posts draw student responses and vary what you share based on what students engage with.</p>
+          </div>
+          <div class="panel flow">
+            <h3>Use a Clear Call to Action</h3>
+            <p>End each main post with a <strong>call to action</strong> that gives students a clear way to join the discussion. Ask them to share one study tip, vote in a poll, or reply with a small win. For example, “What helped you get through Unit 2? Reply with one tip a classmate could try this week.”</p>
+            <p>Use open-ended questions that prompt students to reflect on a specific topic, such as study habits, time management, a recent win, or a setback.</p>
+            <blockquote>“What’s helped you stay motivated in [module, unit, or chapter]?”</blockquote>
+          </div>
+          <div class="panel flow">
+            <h3>Share Your Experience</h3>
+            <p>You’re a student too. Share relevant experiences and struggles honestly so students have a point of connection. Think about what you’re experiencing as a student right now, then tailor your posts to shared challenges, upcoming deadlines, or common course pain points.</p>
+            <blockquote>“What’s been the toughest part of the course so far? For me, [module, unit, or chapter] really stretched me! I met with a Course Instructor and got clarity on [topic].”</blockquote>
+          </div>
+          <div class="panel flow">
+            <h3>Celebrate Wins &amp; Progress</h3>
+            <p>Recognize achievements and encourage students to share their own progress. Include small wins, such as starting a new section or organizing notes, so students at different points in the course can join in.</p>
+            <blockquote>“Shout-out to those who submitted Task 2 this week! What’s one step you took toward your next goal?”</blockquote>
+          </div>
+          <div class="panel flow">
+            <h3>Make Space for Setbacks</h3>
+            <p>Normalize struggle and model honesty about what feels difficult. Use a warm, encouraging tone and respond with empathy so students feel comfortable sharing without fear of judgment.</p>
+            <blockquote>“What’s been the toughest part of this course so far?”</blockquote>
+            <p>Acknowledge and validate what students share, then follow up with a practical strategy or a relevant WGU course resource. Use only WGU course-approved resources.</p>
+          </div>
+          <div class="panel flow">
+            <h3>Support Students Between Posts</h3>
+            <p>Reply to student questions and comments, upvote useful posts, and promote Peer Navigator services when relevant. During appointments, invite students to share questions or insights with the community.</p>
+            <p>Send a one-to-one WGU Connect message for a quick check-in, proactive support, or a relevant tip. Open <strong>Inbox</strong> at the top of the page to review your conversations.</p>
+          </div>
+          <div class="panel flow">
+            <h3>Do Not Use AI - Be Authentic</h3>
+            <p><strong>Do not use AI to generate an entire community post.</strong> Write each post in your own words so it sounds human and reflects your voice as a Peer Navigator.</p>
+            <p>Draw on your experience as a student. Share a specific course challenge, a tip you’ve tried, or a question you’d genuinely ask a classmate.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="practice-examples">
+        <h2 id="practice-examples">Practice with Examples</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <div class="panel">
+            <h3>Write a main post students can easily reply to</h3>
+            <div class="flow">
+              <blockquote>“What helped you get through [module]? I had to break the practice questions into smaller sets before they clicked. Share one thing that worked for you so someone else can try it this week.”</blockquote>
+              <p><strong>Try it.</strong> Replace the module and study tip with something you’ve actually experienced. Keep the ask specific enough that a student can answer in one sentence.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Reply to a student who feels stuck</h3>
+            <div class="flow">
+              <blockquote>“That section can feel overwhelming when you’re trying to tackle it all at once. Which part is giving you the most trouble? If you’ve worked through this section, what helped you get started?”</blockquote>
+              <p><strong>Try it.</strong> Acknowledge the student’s experience, then ask a focused question that gives the student and their classmates a way into the conversation.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Turn a progress celebration into a discussion</h3>
+            <div class="flow">
+              <blockquote>“Shout-out to everyone who submitted Task 2, started a new section, or finally organized their notes this week. What’s one small win you had, and what helped you get there?”</blockquote>
+              <p><strong>Try it.</strong> Name a few kinds of progress so students at different points in the course can join in.</p>
+            </div>
+          </div>
+          <div id="post-analysis" class="panel flow" role="group" aria-labelledby="post-analysis-title">
+            <h3 id="post-analysis-title">Why Is This Post Effective?</h3>
+            <p>Read each example post and select the elements that make it effective.</p>
+            <div class="post-controls" role="group" aria-label="Example posts">
+              <button type="button" data-example-tab aria-pressed="true">Post 1</button>
+              <button type="button" data-example-tab aria-pressed="false">Post 2</button>
+              <button type="button" data-example-tab aria-pressed="false">Post 3</button>
+              <button type="button" data-example-tab aria-pressed="false">Post 4</button>
+            </div>
+            <div class="two-columns">
+              <div>
+                <article class="panel flow" data-example-post data-answers="opt-1 opt-2 opt-3 opt-4" data-distractors="opt-5 opt-6">
+                  <p><strong>Bryan Ramey</strong> · Peer Navigator</p>
+                  <h4>Which Udemy Course Do you Prefer?</h4>
+                  <p>Which Udemy Course do you prefer to study for Network+?</p>
+                  <p>• Andrew Ramdayal CompTIA Network+ N10-009 Full Course, Labs, Course Notes | Udemy Business</p>
+                  <p>• Jason Dion CompTIA Network+ (N10-009) Full Course &amp; Practice Exam | Udemy Business</p>
+                  <p>• Mike Myers TOTAL: CompTIA Network+ (N10-009) + Practice Exam | Udemy Business</p>
+                  <p>Or…</p>
+                  <p>Professor Messer How to Pass Your CompTIA N10-009 Network+ Exam</p>
+                </article>
+                <article class="panel flow" data-example-post data-answers="opt-1 opt-2 opt-3" data-distractors="opt-5 opt-6" hidden>
+                  <p><strong>Ashley Collins</strong> · Peer Navigator</p>
+                  <h4>Your Go-To Study Breaks</h4>
+                  <p>What&#x27;s your go-to way to take a break without losing momentum?</p>
+                  <p>Quick walk, music, stretching, power nap — or something else?</p>
+                </article>
+                <article class="panel flow" data-example-post data-answers="opt-2 opt-3 opt-4 opt-5" data-distractors="opt-1 opt-6" hidden>
+                  <p><strong>Zaakirah Taylor</strong> · Peer Navigator</p>
+                  <h4>🔑 Your 5-Step Guide to Mastering Systems Thinking</h4>
+                  <p>Hey everyone,</p>
+                  <p>If you&#x27;re feeling overwhelmed by all the reading, I put together a quick list of the 5 essential concepts and tools you need to master. They are all listed under the &quot;Learn the Basics&quot; section on the Systems Thinking Tips page, and they&#x27;re the building blocks for the tasks!</p>
+                  <p>Systems and Systems Thinking: Understand the core idea of looking at the whole picture and the relationships between parts, not just individual events.</p>
+                  <p>Iceberg Model: This is for Task 1. Learn to look past a surface-level event to see the patterns and, most importantly, the underlying structure (mental models/system design) that causes them.</p>
+                  <p>Behavior Over Time Graphs (BOTs): Also for Task 1. You need to select and apply the graph that accurately shows the trend of key variables in your case study over time.</p>
+                  <p>Causal Loop Diagrams (CLDs): Crucial for Task 2. These diagrams show the cause-and-effect relationships within a system, specifically how reinforcing (R) and balancing (B) loops create outcomes.</p>
+                  <p>Systems Archetypes: The other half of Task 2. Archetypes are common, recurring CLD patterns (like &quot;Fixes that Fail&quot;) that help you quickly identify and explain a system&#x27;s common problems and leverage points.</p>
+                  <p>If you know these five concepts, you&#x27;ve got the foundation to ace the tasks!</p>
+                  <p>Which one of these concepts was the hardest for you to grasp initially?</p>
+                </article>
+                <article class="panel flow" data-example-post data-answers="opt-1 opt-2 opt-3 opt-4 opt-5" data-distractors="opt-6" hidden>
+                  <p><strong>Keila Clark</strong> · Peer Navigator</p>
+                  <h4>Hi C165 learners! 👋</h4>
+                  <p>Here&#x27;s a little support for this week:</p>
+                  <p>Study Tip: Break down complex problems into smaller steps and tackle one operation at a time.</p>
+                  <p>Remember that white boards are useable in all courses not just math!</p>
+                  <p>WGU Resources:</p>
+                  <p>• C165 Course Notes &amp; Practice Problems</p>
+                  <p>• Lesson Videos and Study Modules in your WGU portal</p>
+                  <p>Peer Coaching: Struggling with a concept or problem? Reply here — I will get you the schedule link. We can set up a time to look at the available resources together to find the ones that will work best for you.</p>
+                  <p>Keep practicing — every problem you work through gets you closer to mastering the material! 💪</p>
+                </article>
+              </div>
+              <div class="flow">
+                <fieldset>
+                  <legend>Select all that apply</legend>
+                  <label><input type="checkbox" value="opt-1"> <span>Relatively short and concise</span></label>
+                  <label><input type="checkbox" value="opt-2"> <span>Clear, direct question</span></label>
+                  <label><input type="checkbox" value="opt-3"> <span>Immediately applicable to the student or content</span></label>
+                  <label><input type="checkbox" value="opt-4"> <span>Written by a human with limited emojis and no AI content</span></label>
+                  <label><input type="checkbox" value="opt-5"> <span>Is encouraging and uplifting</span></label>
+                  <label><input type="checkbox" value="opt-6"> <span>Long detailed explanation with multiple paragraphs</span></label>
+                </fieldset>
+                <p data-example-feedback aria-live="polite" aria-atomic="true"></p>
+                <button type="button" data-example-check>Check My Answers</button>
+                <button type="button" data-example-reset hidden>Try Again</button>
+              </div>
+            </div>
+          </div>
+          <script>
+            (() => {
+              const activity = document.getElementById('post-analysis');
+              const posts = [...activity.querySelectorAll('[data-example-post]')];
+              const tabs = [...activity.querySelectorAll('[data-example-tab]')];
+              const options = [...activity.querySelectorAll('input[type="checkbox"]')];
+              const feedback = activity.querySelector('[data-example-feedback]');
+              const check = activity.querySelector('[data-example-check]');
+              const reset = activity.querySelector('[data-example-reset]');
+              let activeIndex = 0;
+
+              function resetAnswers() {
+                for (const option of options) {
+                  option.checked = false;
+                  option.disabled = false;
+                  delete option.parentElement.dataset.result;
+                }
+                feedback.textContent = '';
+                check.hidden = false;
+                reset.hidden = true;
+              }
+
+              tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                  activeIndex = index;
+                  posts.forEach((post, position) => { post.hidden = position !== index; });
+                  tabs.forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
+                  resetAnswers();
+                });
+              });
+
+              check.addEventListener('click', () => {
+                const expected = posts[activeIndex].dataset.answers.split(' ');
+                const distractors = posts[activeIndex].dataset.distractors.split(' ');
+                const identified = options.filter(option => option.checked && expected.includes(option.value)).length;
+                const extra = options.filter(option => option.checked && distractors.includes(option.value)).length;
+                for (const option of options) {
+                  if (expected.includes(option.value)) {
+                    option.parentElement.dataset.result = option.checked ? 'correct' : 'missed';
+                  } else if (option.checked && distractors.includes(option.value)) {
+                    option.parentElement.dataset.result = 'incorrect';
+                  }
+                  option.disabled = true;
+                }
+                feedback.textContent = identified === expected.length && extra === 0
+                  ? 'You identified all the key elements that make this post effective.'
+                  : 'You identified ' + identified + ' of ' + expected.length + ' key elements. Review the answers marked above and try again.';
+                check.hidden = true;
+                reset.hidden = false;
+                reset.focus();
+              });
+
+              reset.addEventListener('click', () => {
+                resetAnswers();
+                options[0].focus();
+              });
+            })();
+          </script>
+          <div id="cta-simulation" class="panel flow" role="group" aria-labelledby="cta-simulation-title">
+            <h3 id="cta-simulation-title">Crafting Effective Calls to Action</h3>
+            <p>A <strong>call to action (CTA)</strong> invites students to do something specific, such as sharing a study tip or replying with a win. A clear prompt makes it easier to join the conversation.</p>
+            <div class="two-columns">
+              <div class="flow">
+                <h4>Elements of a Strong CTA</h4>
+                <ul>
+                  <li><strong>Be specific.</strong> Tell students exactly what to do.</li>
+                  <li><strong>Offer value.</strong> Give students a reason to participate.</li>
+                  <li><strong>Make it easy.</strong> Ask for a response students can give quickly.</li>
+                  <li><strong>Give a timely reason to respond.</strong> Tie the prompt to what students are working on now.</li>
+                </ul>
+                <div class="callout flow">
+                  <p><strong>Sarah Mitchell</strong> · Peer Navigator</p>
+                  <p>Week 3 check-in time!</p>
+                  <p>We’ve moved from foundational concepts to applying them in practice. Some of you might be racing ahead, and others might be feeling overwhelmed.</p>
+                  <p>Remember, progress over perfection.</p>
+                  <p data-cta-preview>[Select a CTA to complete this post.]</p>
+                </div>
+              </div>
+              <div class="flow">
+                <h4>Choose the best call to action for this post</h4>
+                <div class="cta-options">
+                  <button type="button" data-cta-option>Thanks for reading!</button>
+                  <button type="button" data-cta-option>Drop a comment and share one key insight, a challenge, or your biggest win. I’ll respond with personalized feedback.</button>
+                  <button type="button" data-cta-option>Comment if you agree.</button>
+                  <button type="button" data-cta-option>Let me know your thoughts.</button>
+                </div>
+                <div aria-live="polite" aria-atomic="true">
+                  <p class="cta-feedback" data-cta-feedback hidden></p>
+                </div>
+                <button type="button" class="cta-reset" data-cta-reset hidden>Try Again</button>
+              </div>
+            </div>
+          </div>
+          <script>
+            (() => {
+              const simulation = document.getElementById('cta-simulation');
+              const options = [...simulation.querySelectorAll('[data-cta-option]')];
+              const preview = simulation.querySelector('[data-cta-preview]');
+              const feedback = simulation.querySelector('[data-cta-feedback]');
+              const reset = simulation.querySelector('[data-cta-reset]');
+              const prompt = preview.textContent;
+              const bestOption = 1;
+              const bestReason = 'It gives students specific options, makes small wins welcome, and offers personalized feedback in return.';
+              const reasons = [
+                '“Thanks for reading!” closes the post without asking students to respond.',
+                bestReason,
+                '“Comment if you agree” limits replies to agreement and gives students little direction about what to share.',
+                '“Let me know your thoughts” invites a response but gives students little guidance about what to write.'
+              ];
+              let selectedOption;
+
+              options.forEach((option, index) => {
+                option.addEventListener('click', () => {
+                  selectedOption = option;
+                  preview.textContent = option.textContent.trim();
+                  options[bestOption].classList.add('cta-best');
+                  if (index !== bestOption) option.classList.add('cta-incorrect');
+                  options.forEach(button => { button.disabled = true; });
+                  feedback.classList.add(index === bestOption ? 'cta-best' : 'cta-incorrect');
+                  feedback.hidden = false;
+                  feedback.textContent = index === bestOption
+                    ? 'Best choice. ' + bestReason
+                    : 'Try a more specific prompt. ' + reasons[index] + ' The highlighted option works because ' + bestReason.charAt(0).toLowerCase() + bestReason.slice(1);
+                  reset.hidden = false;
+                  reset.focus();
+                });
+              });
+
+              reset.addEventListener('click', () => {
+                options.forEach(option => {
+                  option.disabled = false;
+                  option.classList.remove('cta-best', 'cta-incorrect');
+                });
+                preview.textContent = prompt;
+                feedback.textContent = '';
+                feedback.hidden = true;
+                feedback.classList.remove('cta-best', 'cta-incorrect');
+                reset.hidden = true;
+                selectedOption.focus();
+              });
+            })();
+          </script>
+        </div>
+      </section>
+
+      <section aria-labelledby="interaction-data">
+        <h2 id="interaction-data">Interaction Data</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="exchange-reminder flow">
+          <p>On the <strong>Interaction Data Form</strong>, enter <strong>1 Community Exchange per post or reply</strong> for the course where you engaged. You may report a cumulative total for each course.</p>
+          <p><strong>Example.</strong> If you write one main post and two replies in Course A, enter <strong>3</strong> for Course A. If you write two replies in Course B, enter <strong>2</strong> for Course B.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="sandbox-activity">
+        <h2 id="sandbox-activity">Sandbox Activity</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="flow">
+          <ol>
+            <li>Create a WGU Connect account using your <strong>employee email</strong>.</li>
+            <li>Visit the <strong>Peer Navigator Sandbox</strong>, a WGU Connect community just for Peer Navigator interns to practice posting.</li>
+            <li>To complete this training activity, write <strong>one main post</strong> and <strong>one reply</strong> to another Peer Navigator.</li>
+          </ol>
+          <p class="sandbox-button-row"><a class="sandbox-button" href="https://wguconnect.wgu.edu/hub/wgu-connect/groups/peer-coach-sandbox/discussion">Peer Navigator Sandbox</a></p>
+          <p>After making your post and reply, reach out to your leader on Teams. They’ll let you know which community or communities you’re assigned to. Then use the course lookup tool to open each assigned course’s front page and click the <strong>Join Course Community</strong> button.</p>
+          <p><strong>Begin posting in your course community next week!</strong></p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
