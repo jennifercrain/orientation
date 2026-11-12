@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webex Functions &amp; Features</title>
+  <style>
+    body { margin: 0; }
+    #app-wrapper, #app-wrapper * {
+      box-sizing: border-box;
+      font-family: Arial, "Liberation Sans", sans-serif !important;
+    }
+    #app-wrapper {
+      background: #FFFFFF;
+      color: #374151;
+      font-size: 16px !important;
+      line-height: 1.5;
+    }
+    #app-wrapper h1, #app-wrapper h2, #app-wrapper h3, #app-wrapper p,
+    #app-wrapper ol, #app-wrapper ul, #app-wrapper blockquote { margin: 0; }
+    #app-wrapper h1 { font-size: 36px !important; line-height: 1.1 !important; }
+    #app-wrapper h2 { font-size: 24px !important; line-height: 1.2 !important; }
+    #app-wrapper h3 { font-size: 20px !important; line-height: 1.25 !important; }
+    #app-wrapper h2, #app-wrapper h3 { color: #002855; }
+    #app-wrapper .container { max-width: 72rem; margin: 0 auto; padding-inline: 1.5rem; }
+    #app-wrapper .banner {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      text-align: center;
+      background: linear-gradient(135deg, #002855 0%, #0070F0 100%);
+    }
+    #app-wrapper .banner-pattern { position: absolute; inset: 0; opacity: 0.1; pointer-events: none; }
+    #app-wrapper .banner-content { position: relative; padding-block: 4rem; }
+    #app-wrapper .banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 999px;
+      background: rgba(151, 225, 82, 0.2);
+      color: #97E152;
+      font-weight: 500;
+    }
+    #app-wrapper .banner-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #97E152; }
+    #app-wrapper .banner p { max-width: 48rem; margin: 1.5rem auto 0; color: rgba(255, 255, 255, 0.9); }
+    #app-wrapper .banner-wave { display: block; width: 100%; margin-bottom: -1px; }
+    #app-wrapper main > section { padding-block: 3rem; scroll-margin-top: 1rem; }
+    #app-wrapper main > section + section { border-top: 1px solid #F3F4F6; }
+    #app-wrapper .section-divider {
+      width: 5rem;
+      height: 4px;
+      margin: 1rem 0 1.5rem;
+      background: linear-gradient(90deg, #002855 0%, #0070F0 50%, #97E152 100%);
+      border-radius: 2px;
+    }
+    #app-wrapper .two-columns { display: grid; gap: 2rem; }
+    #app-wrapper .with-video { align-items: center; }
+    #app-wrapper .video-panel {
+      min-width: 0;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0, 112, 240, 0.1), rgba(151, 225, 82, 0.1));
+    }
+    #app-wrapper .video-placeholder {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 16 / 9;
+      padding: 1rem;
+      border: 1px dashed #0070F0;
+      border-radius: 0.75rem;
+      background: #FFFFFF;
+      color: #002855;
+      text-align: center;
+    }
+    #app-wrapper .video-panel > iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 0.75rem; }
+    #app-wrapper ol, #app-wrapper ul { padding-left: 1.4rem; }
+    #app-wrapper li + li { margin-top: 0.65rem; }
+    #app-wrapper li > ul { margin-top: 0.5rem; }
+    #app-wrapper strong, #app-wrapper b { color: #0070F0; }
+    #app-wrapper li::marker { color: #002855; font-weight: bold; }
+    #app-wrapper .callout {
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      border-left: 4px solid #0070F0;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, rgba(0, 40, 85, 0.05), rgba(0, 112, 240, 0.05));
+    }
+    #app-wrapper .callout p + p { margin-top: 0.5rem; }
+    #app-wrapper .download-row { text-align: center; }
+    #app-wrapper .download-link {
+      display: inline-block;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      background: #0070F0;
+      color: #FFFFFF;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    #app-wrapper .download-link:hover { background: #002855; }
+    #app-wrapper .download-link:focus-visible { outline-color: #002855; }
+    #app-wrapper .video-note { margin-top: 0.75rem; }
+    #app-wrapper .method + .method { margin-top: 2rem; }
+    #app-wrapper .method h3, #app-wrapper .tool-list h3 { margin-bottom: 0.75rem; }
+    #app-wrapper .tool-list { margin-top: 1.5rem; }
+    #app-wrapper a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+    @media (prefers-reduced-motion: no-preference) {
+      #app-wrapper .banner-dot { animation: banner-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      #app-wrapper .banner-content > * { animation: banner-fade-in 0.6s ease both; }
+      #app-wrapper .banner-content > :nth-child(1) { animation-delay: 0.1s; }
+      #app-wrapper .banner-content > :nth-child(2) { animation-delay: 0.2s; }
+      #app-wrapper .banner-content > :nth-child(3) { animation-delay: 0.3s; }
+    }
+    @keyframes banner-pulse { 50% { opacity: 0.5; } }
+    @keyframes banner-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (min-width: 768px) {
+      #app-wrapper h1 { font-size: 48px !important; }
+      #app-wrapper h2 { font-size: 30px !important; }
+      #app-wrapper .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #app-wrapper h1 { font-size: 60px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <header class="banner">
+      <div class="banner-pattern" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="2" fill="white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+        </svg>
+      </div>
+      <div class="container banner-content">
+        <div class="banner-label"><span class="banner-dot" aria-hidden="true"></span>Week Three</div>
+        <h1>Webex Functions &amp; Features</h1>
+        <p>Practice sharing your screen, popping out panels, docking windows, and switching between them until you can do each comfortably.</p>
+      </div>
+      <svg class="banner-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80V40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0Z" fill="#FFFFFF" />
+      </svg>
+    </header>
+
+    <main class="container">
+      <section id="webex-setup" aria-labelledby="webex-setup-title">
+        <h2 id="webex-setup-title">Webex Setup</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="download-row"><a class="download-link" href="https://www.webex.com/downloads.html">Download the Webex application (required)</a></p>
+        <aside class="callout">
+          <p><strong>Screen sharing is required</strong> for Peer Navigators.</p>
+          <p>For appointments, keep your <strong>personal room locked</strong> so the next student can’t join an appointment in progress. <strong>Live event rooms must remain unlocked</strong> at all times.</p>
+        </aside>
+      </section>
+
+      <section id="screensharing" aria-labelledby="screensharing-title">
+        <div class="two-columns with-video">
+          <div>
+            <h2 id="screensharing-title">Screensharing in Webex</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+            <ol>
+              <li>At the bottom of Webex, click <strong>Share</strong>.</li>
+              <li>Select the <strong>screen or application</strong> you want students to see.</li>
+              <li>Uncheck <strong>Show my Webex app</strong> to keep Webex panels, such as Participants, out of the shared view.</li>
+              <li>Click <strong>Share</strong>.</li>
+            </ol>
+            <aside class="callout"><p>If you’re sharing a video, check <strong>Include computer sound</strong> in the right-hand menu before you share.</p></aside>
+          </div>
+          <div class="video-panel">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGXmK2aOrA/0xnz7ajhqH1QL3CJNroEUA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+            <p class="video-note">The video may show an earlier version of Webex. Use the written steps for this training.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="webex-panels" aria-labelledby="webex-panels-title">
+        <div class="two-columns with-video">
+          <div>
+            <h2 id="webex-panels-title">Cameras, Chat, and Participants</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+            <ol>
+              <li>When you start sharing, your camera view should pop out automatically.</li>
+              <li>In the camera view, click the <strong>person icon</strong> to open <strong>Participants</strong>.</li>
+              <li>In the camera view, click the <strong>three dots</strong> for more options and select <strong>Chat</strong>.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGYWnhsnV4/Xq7ibKEsszuZTZhfnmQ0dQ/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+            <p class="video-note">The video may show an earlier version of Webex. Use the written steps for this training.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="docking-windows" aria-labelledby="docking-windows-title">
+        <div class="two-columns with-video">
+          <div>
+            <h2 id="docking-windows-title">Docking Windows</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+            <ol>
+              <li>Open two separate windows and select the one you want on the left.</li>
+              <li>Hold the <strong>Windows key</strong> and press the <strong>Left Arrow</strong> to dock the selected window on the left.</li>
+              <li>Release the Windows key. When prompted, select the window you want on the right.</li>
+              <li>To resize both windows, drag the divider between them.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGX_tB2Sfo/hwzfDVAUptqrbieMqNmshw/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="switching-windows" aria-labelledby="switching-windows-title">
+        <h2 id="switching-windows-title">Methods for Switching Between Windows</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="two-columns with-video method">
+          <div>
+            <h3>Method 1: Alt+Tab</h3>
+            <ol>
+              <li>Hold <strong>Alt</strong> and press <strong>Tab</strong> to display your open windows.</li>
+              <li>Keep holding <strong>Alt</strong> and tap <strong>Tab</strong> to cycle through the windows.</li>
+              <li>Release <strong>Alt</strong> when the window you want is highlighted.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGYD-kY6s0/JVzbh0kSBIzqCmYWZJwbzQ/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+          </div>
+        </div>
+        <div class="two-columns with-video method">
+          <div>
+            <h3>Method 2: Tab Dragging</h3>
+            <ol>
+              <li>With your windows docked, open the tabs you’ll need in a browser window on your other screen.</li>
+              <li>Click and drag the tab you need into the browser window on the screen you’re sharing.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGYEGvJig0/cfzJ62BQDXnbw5ac9IvJzA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="annotate" aria-labelledby="annotate-title">
+        <div class="two-columns with-video">
+          <div>
+            <h2 id="annotate-title">Annotate Tool</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+            <ol>
+              <li>After you start sharing, look for the orange sharing bar at the top of the shared screen.</li>
+              <li>Next to <strong>You’re sharing</strong>, click the square icon with a plus sign to open <strong>More sharing options</strong>.</li>
+              <li>Select <strong>Annotate</strong> to open the toolbar. Use it to circle, highlight, or add text directly on the shared screen or application.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGYbTco28U/c3SFqYHBYCpP39tt3fIolw/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+            <p class="video-note">The video may show an earlier version of Webex. Use the written steps for this training.</p>
+          </div>
+        </div>
+        <div class="tool-list">
+          <h3>Annotation Tools</h3>
+          <ul>
+            <li><strong>Laser pointer</strong> draws attention to an area with a mark that fades after a few seconds.</li>
+            <li><strong>Arrow pointer</strong> stamps an arrow with your name. Click another area to move it, or use the paintbrush icon (fourth from the bottom) to remove arrow stamps.</li>
+            <li><strong>Pen</strong> draws marks that stay on the screen until you erase or clear them.</li>
+            <li><strong>Text</strong> adds a typed message.</li>
+            <li><strong>Eraser</strong> removes pen or text markings.</li>
+            <li><strong>Undo/Redo</strong> reverses or restores the last action.</li>
+            <li><strong>Clear all</strong> removes all pointers and annotations.</li>
+          </ul>
+        </div>
+        <aside class="callout"><p><strong>Tip.</strong> To give participants annotation privileges, select the gear icon on the Annotate toolbar and choose <strong>Allow anyone to annotate</strong>.</p></aside>
+      </section>
+
+      <section id="whiteboards" aria-labelledby="whiteboards-title">
+        <div class="two-columns with-video">
+          <div>
+            <h2 id="whiteboards-title">Webex Whiteboards</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+            <ol>
+              <li>After you start sharing, use the <strong>three dots</strong> in the pop-out camera view to open more options, then select <strong>Whiteboards</strong>.</li>
+              <li>Select <strong>New whiteboard</strong>, then <strong>Open for all</strong>.</li>
+              <li>If Webex asks you to stop sharing your current screen or application, click <strong>Continue</strong>.</li>
+              <li>Use the tools on the left to add pen marks, shapes, sticky notes, text, or emojis.</li>
+              <li>Select <strong>Close for all</strong> in the upper right to end the whiteboard. If you were sharing before opening it, select <strong>Resume</strong> on the gray sharing bar at the top of your screen to return to your previous share.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+            <!-- Replace the placeholder below with the embed code for the Webex Whiteboards video. -->
+            <div class="video-placeholder"><p>Webex Whiteboards video</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="slido" aria-labelledby="slido-title">
+        <div class="two-columns with-video">
+          <div>
+            <h2 id="slido-title">Slido Polling</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+            <ol>
+              <li>After you start sharing, use the <strong>three dots</strong> in the pop-out camera view and select <strong>More panels</strong>.</li>
+              <li>Select <strong>Slido (polling and Q&amp;A)</strong>, or open <strong>Apps</strong> and search for Slido.</li>
+              <li>Click <strong>Create new slido</strong>, then <strong>+ Add</strong>.</li>
+              <li>Choose an interaction type: Multiple choice, Word cloud, Open text, Ranking, Rating, Quiz, or Survey.</li>
+              <li>Follow the on-screen prompts, then click the green <strong>Launch</strong> button to start the poll.</li>
+              <li>Click the red <strong>stop</strong> button to end the poll.</li>
+            </ol>
+          </div>
+          <div class="video-panel">
+            <!-- Replace the placeholder below with the embed code for the Slido Polling video. -->
+            <div class="video-placeholder"><p>Slido Polling video</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
